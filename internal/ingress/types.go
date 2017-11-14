@@ -26,6 +26,7 @@ import (
 	"k8s.io/ingress-nginx/internal/ingress/annotations/auth"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/authreq"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/authtls"
+	"k8s.io/ingress-nginx/internal/ingress/annotations/cache"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/cors"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/ipwhitelist"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/proxy"
@@ -259,6 +260,8 @@ type Location struct {
 	// DefaultBackend allows the use of a custom default backend for this location.
 	// +optional
 	DefaultBackend *apiv1.Service `json:"defaultBackend,omitempty"`
+	// Cache contains the nginx cache configuration parameters
+	Cache cache.Config `json:"cache"`
 }
 
 // SSLPassthroughBackend describes a SSL upstream server configured

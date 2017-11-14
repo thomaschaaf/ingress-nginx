@@ -112,7 +112,7 @@ http {
 
     include /etc/nginx/mime.types;
     default_type text/html;
-    
+
     {{ if $cfg.EnableBrotli }}
     brotli on;
     brotli_comp_level {{ $cfg.BrotliLevel }};
@@ -366,6 +366,11 @@ http {
     {{ range $zone := (buildRateLimitZones $servers) }}
     {{ $zone }}
     {{ end }}
+
+    {{/* build all the required caches */}}
+    # nginx caches
+    {{ range $cache := (buildCaches $servers) }}
+    {{ $cache }}{{ end }}
 
     {{/* Build server redirects (from/to www) */}}
     {{ range $hostname, $to := .RedirectServers }}
@@ -837,6 +842,33 @@ stream {
             proxy_set_header       X-Service-Name     $service_name;
             {{ end }}
 
+            {{ with $cache := $location.Cache }}
+            {{ if $cache.Enabled }}
+
+            {{ if $cache.AddStatusHeader}}
+            add_header                  X-Cache-Status          $upstream_cache_status;
+            {{ end }}
+
+            proxy_cache_revalidate      {{ $cache.Revalidate }};
+            proxy_cache_min_uses        {{ $cache.MinUses }};
+            proxy_cache_use_stale       {{ $cache.UseStale }};
+            proxy_cache_methods         {{ $cache.Methods }};
+            proxy_cache_valid           200 302 {{ $cache.TTL }};
+
+            proxy_cache_key             "$scheme$host$request_uri";
+
+            proxy_cache_lock            on;
+
+            proxy_cache_bypass          $http_pragma            $http_authorization;
+            proxy_cache_bypass          $http_x_no_cache        $arg_nocache;
+            proxy_cache_bypass          $http_upgrade;
+
+            proxy_ignore_headers        Cache-Control;
+            proxy_ignore_headers        Set-Cookie;
+
+            proxy_cache                 {{ $cache.Name }};
+            {{ end }}
+            {{ end }}
 
             {{ if not (empty $location.Backend) }}
             {{ buildProxyPass $server.Hostname $all.Backends $location }}
@@ -844,6 +876,7 @@ stream {
             # No endpoints available for the request
             return 503;
             {{ end }}
+
             {{ else }}
             # Location denied. Reason: {{ $location.Denied }}
             return 503;

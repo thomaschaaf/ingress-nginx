@@ -134,6 +134,7 @@ var (
 		"isLocationAllowed":        isLocationAllowed,
 		"buildLogFormatUpstream":   buildLogFormatUpstream,
 		"buildDenyVariable":        buildDenyVariable,
+		"buildCaches":              buildCaches,
 		"getenv":                   os.Getenv,
 		"contains":                 strings.Contains,
 		"hasPrefix":                strings.HasPrefix,
@@ -692,4 +693,36 @@ func buildAuthSignURL(input interface{}) string {
 	}
 
 	return fmt.Sprintf("%v&rd=$pass_access_scheme://$http_host$request_uri", s)
+}
+
+func buildCaches(input interface{}) []string {
+	caches := sets.String{}
+
+	servers, ok := input.([]*ingress.Server)
+	if !ok {
+		glog.Errorf("expected a '[]*ingress.Server' type but %T was returned", input)
+		return caches.List()
+	}
+
+	for _, server := range servers {
+		for _, loc := range server.Locations {
+			if !loc.Cache.Enabled {
+				continue
+			}
+
+			cache := fmt.Sprintf("proxy_cache_path %v levels=%v keys_zone=%v:10m max_size=%v inactive=%v use_temp_path=off;",
+				loc.Cache.Path,
+				loc.Cache.Levels,
+				loc.Cache.Name,
+				loc.Cache.MaxSize,
+				loc.Cache.InactiveTimeout,
+			)
+
+			if !caches.Has(cache) {
+				caches.Insert(cache)
+			}
+		}
+	}
+
+	return caches.List()
 }
