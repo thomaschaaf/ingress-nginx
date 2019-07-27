@@ -1,0 +1,28 @@
+{
+  "name": "nginx-docs",
+  "version": "0.0.1",
+  "description": "CLI tool to dump NGINX configuration from HTML to a more friendly JSON format",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubernetes/ingress-nginxtree/master/docs/nginx-docs"
+  },
+  "keywords": [
+    "nginx",
+    "documentation",
+    "cli"
+  ],
+  "author": "Manuel Alejandro de Brito Fontes",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "puppeteer": "^1.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0"
+  }
+}
