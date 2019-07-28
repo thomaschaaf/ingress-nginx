@@ -6,6 +6,7 @@
       "directives": [
         {
           "name": "absolute_redirect",
+          "fieldName": "AbsoluteRedirect",
           "syntax": "absolute_redirect on | off;",
           "default": "absolute_redirect on;",
           "context": "http, server, location",
@@ -13,6 +14,7 @@
         },
         {
           "name": "aio",
+          "fieldName": "Aio",
           "syntax": "aio on | off | threads[=pool];",
           "default": "aio off;",
           "context": "http, server, location",
@@ -20,6 +22,7 @@
         },
         {
           "name": "aio_write",
+          "fieldName": "AioWrite",
           "syntax": "aio_write on | off;",
           "default": "aio_write off;",
           "context": "http, server, location",
@@ -27,12 +30,14 @@
         },
         {
           "name": "alias",
+          "fieldName": "Alias",
           "syntax": "alias path;",
           "context": "location",
           "description": "\nDefines a replacement for the specified location.\nFor example, with the following configuration\n\nlocation /i/ {\n    alias /data/w3/images/;\n}\n\n \non request of\n“/i/top.gif”, the file\n/data/w3/images/top.gif will be sent.\n\n\nThe path value can contain variables,\nexcept $document_root and $realpath_root.\n\n\nIf alias is used inside a location defined\nwith a regular expression then such regular expression should\ncontain captures and alias should refer to\nthese captures (0.7.40), for example:\n\nlocation ~ ^/users/(.+\\.(?:gif|jpe?g|png))$ {\n    alias /data/w3/images/$1;\n}\n\n \n\n\nWhen location matches the last part of the directive’s value:\n\nlocation /images/ {\n    alias /data/w3/images/;\n}\n\n \nit is better to use the\nroot\ndirective instead:\n\nlocation /images/ {\n    root /data/w3;\n}\n\n \n"
         },
         {
           "name": "chunked_transfer_encoding",
+          "fieldName": "ChunkedTransferEncoding",
           "syntax": "chunked_transfer_encoding on | off;",
           "default": "chunked_transfer_encoding on;",
           "context": "http, server, location",
@@ -40,6 +45,7 @@
         },
         {
           "name": "client_body_buffer_size",
+          "fieldName": "ClientBodyBufferSize",
           "syntax": "client_body_buffer_size size;",
           "default": "client_body_buffer_size 8k|16k;",
           "context": "http, server, location",
@@ -47,6 +53,7 @@
         },
         {
           "name": "client_body_in_file_only",
+          "fieldName": "ClientBodyInFileOnly",
           "syntax": "client_body_in_file_only on | clean | off;",
           "default": "client_body_in_file_only off;",
           "context": "http, server, location",
@@ -54,6 +61,7 @@
         },
         {
           "name": "client_body_in_single_buffer",
+          "fieldName": "ClientBodyInSingleBuffer",
           "syntax": "client_body_in_single_buffer on | off;",
           "default": "client_body_in_single_buffer off;",
           "context": "http, server, location",
@@ -61,6 +69,7 @@
         },
         {
           "name": "client_body_temp_path",
+          "fieldName": "ClientBodyTempPath",
           "syntax": "client_body_temp_path path [level1 [level2 [level3]]];",
           "default": "client_body_temp_path client_body_temp;",
           "context": "http, server, location",
@@ -68,6 +77,7 @@
         },
         {
           "name": "client_body_timeout",
+          "fieldName": "ClientBodyTimeout",
           "syntax": "client_body_timeout time;",
           "default": "client_body_timeout 60s;",
           "context": "http, server, location",
@@ -75,6 +85,7 @@
         },
         {
           "name": "client_header_buffer_size",
+          "fieldName": "ClientHeaderBufferSize",
           "syntax": "client_header_buffer_size size;",
           "default": "client_header_buffer_size 1k;",
           "context": "http, server",
@@ -82,6 +93,7 @@
         },
         {
           "name": "client_header_timeout",
+          "fieldName": "ClientHeaderTimeout",
           "syntax": "client_header_timeout time;",
           "default": "client_header_timeout 60s;",
           "context": "http, server",
@@ -89,6 +101,7 @@
         },
         {
           "name": "client_max_body_size",
+          "fieldName": "ClientMaxBodySize",
           "syntax": "client_max_body_size size;",
           "default": "client_max_body_size 1m;",
           "context": "http, server, location",
@@ -96,6 +109,7 @@
         },
         {
           "name": "connection_pool_size",
+          "fieldName": "ConnectionPoolSize",
           "syntax": "connection_pool_size size;",
           "default": "connection_pool_size 256|512;",
           "context": "http, server",
@@ -103,6 +117,7 @@
         },
         {
           "name": "default_type",
+          "fieldName": "DefaultType",
           "syntax": "default_type mime-type;",
           "default": "default_type text/plain;",
           "context": "http, server, location",
@@ -110,6 +125,7 @@
         },
         {
           "name": "directio",
+          "fieldName": "Directio",
           "syntax": "directio size | off;",
           "default": "directio off;",
           "context": "http, server, location",
@@ -117,6 +133,7 @@
         },
         {
           "name": "directio_alignment",
+          "fieldName": "DirectioAlignment",
           "syntax": "directio_alignment size;",
           "default": "directio_alignment 512;",
           "context": "http, server, location",
@@ -124,6 +141,7 @@
         },
         {
           "name": "disable_symlinks",
+          "fieldName": "DisableSymlinks",
           "syntax": "disable_symlinks off;disable_symlinks on | if_not_owner [from=part];",
           "default": "disable_symlinks off;",
           "context": "http, server, location",
@@ -131,25 +149,22 @@
         },
         {
           "name": "error_page",
+          "fieldName": "ErrorPage",
           "syntax": "error_page code ... [=[response]] uri;",
           "context": "http, server, location, if in location",
           "description": "\nDefines the URI that will be shown for the specified errors.\nA uri value can contain variables.\n\n\nExample:\n\nerror_page 404             /404.html;\nerror_page 500 502 503 504 /50x.html;\n\n \n\n\nThis causes an internal redirect to the specified uri\nwith the client request method changed to “GET”\n(for all methods other than\n“GET” and “HEAD”).\n\n\nFurthermore, it is possible to change the response code to another\nusing the “=response” syntax, for example:\n\nerror_page 404 =200 /empty.gif;\n\n \n\n\nIf an error response is processed by a proxied server\nor a FastCGI/uwsgi/SCGI/gRPC server,\nand the server may return different response codes (e.g., 200, 302, 401\nor 404), it is possible to respond with the code it returns:\n\nerror_page 404 = /404.php;\n\n \n\n\nIf there is no need to change URI and method during internal redirection\nit is possible to pass error processing into a named location:\n\nlocation / {\n    error_page 404 = @fallback;\n}\n\nlocation @fallback {\n    proxy_pass http://backend;\n}\n\n \n\n\n\n\nIf uri processing leads to an error,\nthe status code of the last occurred error is returned to the client.\n\n \n\n\nIt is also possible to use URL redirects for error processing:\n\nerror_page 403      http://example.com/forbidden.html;\nerror_page 404 =301 http://example.com/notfound.html;\n\n \nIn this case, by default, the response code 302 is returned to the client.\nIt can only be changed to one of the redirect status\ncodes (301, 302, 303, 307, and 308).\n\n\nThe code 307 was not treated as a redirect until versions 1.1.16 and 1.0.13.\n\n \n\n\n\nThe code 308 was not treated as a redirect until version 1.13.0.\n\n \n\n\nThese directives are inherited from the previous level if and\nonly if there are no\nerror_page\ndirectives defined on the current level.\n"
         },
         {
           "name": "etag",
+          "fieldName": "Etag",
           "syntax": "etag on | off;",
           "default": "etag on;",
           "context": "http, server, location",
           "description": "\nEnables or disables automatic generation of the “ETag”\nresponse header field for static resources.\n"
         },
         {
-          "name": "http",
-          "syntax": "http { ... }",
-          "context": "main",
-          "description": "\nProvides the configuration file context in which the HTTP server directives\nare specified.\n"
-        },
-        {
           "name": "if_modified_since",
+          "fieldName": "IfModifiedSince",
           "syntax": "if_modified_since off | exact | before;",
           "default": "if_modified_since exact;",
           "context": "http, server, location",
@@ -157,6 +172,7 @@
         },
         {
           "name": "ignore_invalid_headers",
+          "fieldName": "IgnoreInvalidHeaders",
           "syntax": "ignore_invalid_headers on | off;",
           "default": "ignore_invalid_headers on;",
           "context": "http, server",
@@ -164,12 +180,14 @@
         },
         {
           "name": "internal;",
+          "fieldName": "Internal;",
           "syntax": "internal;",
           "context": "location",
           "description": "\nSpecifies that a given location can only be used for internal requests.\nFor external requests, the client error\n404 (Not Found)\nis returned.\nInternal requests are the following:\n\n\n\n\n\nrequests redirected by the\nerror_page,\nindex,\nrandom_index, and\ntry_files directives;\n\n\n\nrequests redirected by the “X-Accel-Redirect”\nresponse header field from an upstream server;\n\n\n\nsubrequests formed by the\n“include virtual”\ncommand of the\nngx_http_ssi_module\nmodule, by the\nngx_http_addition_module\nmodule directives, and by\nauth_request and\nmirror directives;\n\n\n\nrequests changed by the\nrewrite directive.\n\n\n\n \n\n\nExample:\n\nerror_page 404 /404.html;\n\nlocation = /404.html {\n    internal;\n}\n\n \n\n\nThere is a limit of 10 internal redirects per request to prevent\nrequest processing cycles that can occur in incorrect configurations.\nIf this limit is reached, the error\n500 (Internal Server Error) is returned.\nIn such cases, the “rewrite or internal redirection cycle” message\ncan be seen in the error log.\n\n \n"
         },
         {
           "name": "keepalive_disable",
+          "fieldName": "KeepaliveDisable",
           "syntax": "keepalive_disable none | browser ...;",
           "default": "keepalive_disable msie6;",
           "context": "http, server, location",
@@ -177,6 +195,7 @@
         },
         {
           "name": "keepalive_requests",
+          "fieldName": "KeepaliveRequests",
           "syntax": "keepalive_requests number;",
           "default": "keepalive_requests 100;",
           "context": "http, server, location",
@@ -184,6 +203,7 @@
         },
         {
           "name": "keepalive_timeout",
+          "fieldName": "KeepaliveTimeout",
           "syntax": "keepalive_timeout timeout [header_timeout];",
           "default": "keepalive_timeout 75s;",
           "context": "http, server, location",
@@ -191,6 +211,7 @@
         },
         {
           "name": "large_client_header_buffers",
+          "fieldName": "LargeClientHeaderBuffers",
           "syntax": "large_client_header_buffers number size;",
           "default": "large_client_header_buffers 4 8k;",
           "context": "http, server",
@@ -198,12 +219,14 @@
         },
         {
           "name": "limit_except",
+          "fieldName": "LimitExcept",
           "syntax": "limit_except method ... { ... }",
           "context": "location",
           "description": "\nLimits allowed HTTP methods inside a location.\nThe method parameter can be one of the following:\nGET,\nHEAD,\nPOST,\nPUT,\nDELETE,\nMKCOL,\nCOPY,\nMOVE,\nOPTIONS,\nPROPFIND,\nPROPPATCH,\nLOCK,\nUNLOCK,\nor\nPATCH.\nAllowing the GET method makes the\nHEAD method also allowed.\nAccess to other methods can be limited using the\nngx_http_access_module,\nngx_http_auth_basic_module,\nand\nngx_http_auth_jwt_module\n(1.13.10)\nmodules directives:\n\nlimit_except GET {\n    allow 192.168.1.0/32;\n    deny  all;\n}\n\n \nPlease note that this will limit access to all methods\nexcept GET and HEAD.\n"
         },
         {
           "name": "limit_rate",
+          "fieldName": "LimitRate",
           "syntax": "limit_rate rate;",
           "default": "limit_rate 0;",
           "context": "http, server, location, if in location",
@@ -211,6 +234,7 @@
         },
         {
           "name": "limit_rate_after",
+          "fieldName": "LimitRateAfter",
           "syntax": "limit_rate_after size;",
           "default": "limit_rate_after 0;",
           "context": "http, server, location, if in location",
@@ -218,6 +242,7 @@
         },
         {
           "name": "lingering_close",
+          "fieldName": "LingeringClose",
           "syntax": "lingering_close off | on | always;",
           "default": "lingering_close on;",
           "context": "http, server, location",
@@ -225,6 +250,7 @@
         },
         {
           "name": "lingering_time",
+          "fieldName": "LingeringTime",
           "syntax": "lingering_time time;",
           "default": "lingering_time 30s;",
           "context": "http, server, location",
@@ -232,26 +258,15 @@
         },
         {
           "name": "lingering_timeout",
+          "fieldName": "LingeringTimeout",
           "syntax": "lingering_timeout time;",
           "default": "lingering_timeout 5s;",
           "context": "http, server, location",
           "description": "\nWhen lingering_close is in effect, this directive specifies\nthe maximum waiting time for more client data to arrive.\nIf data are not received during this time, the connection is closed.\nOtherwise, the data are read and ignored, and nginx starts waiting\nfor more data again.\nThe “wait-read-ignore” cycle is repeated, but no longer than specified by the\nlingering_time directive.\n"
         },
         {
-          "name": "listen",
-          "syntax": "listen address[:port] [default_server] [ssl] [http2 | spdy] [proxy_protocol] [setfib=number] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];listen port [default_server] [ssl] [http2 | spdy] [proxy_protocol] [setfib=number] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];listen unix:path [default_server] [ssl] [http2 | spdy] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];",
-          "default": "listen *:80 | *:8000;",
-          "context": "server",
-          "description": "\nSets the address and port for IP,\nor the path for a UNIX-domain socket on which\nthe server will accept requests.\nBoth address and port,\nor only address or only port can be specified.\nAn address may also be a hostname, for example:\n\nlisten 127.0.0.1:8000;\nlisten 127.0.0.1;\nlisten 8000;\nlisten *:8000;\nlisten localhost:8000;\n\n \nIPv6 addresses (0.7.36) are specified in square brackets:\n\nlisten [::]:8000;\nlisten [::1];\n\n \nUNIX-domain sockets (0.8.21) are specified with the “unix:”\nprefix:\n\nlisten unix:/var/run/nginx.sock;\n\n \n\n\nIf only address is given, the port 80 is used.\n\n\nIf the directive is not present then either *:80 is used\nif nginx runs with the superuser privileges, or *:8000\notherwise.\n\n\nThe default_server parameter, if present,\nwill cause the server to become the default server for the specified\naddress:port pair.\nIf none of the directives have the default_server\nparameter then the first server with the\naddress:port pair will be\nthe default server for this pair.\n\n\nIn versions prior to 0.8.21 this parameter is named simply\ndefault.\n\n \n\n\nThe ssl parameter (0.7.14) allows specifying that all\nconnections accepted on this port should work in SSL mode.\nThis allows for a more compact configuration for the server that\nhandles both HTTP and HTTPS requests.\n\n\nThe http2 parameter (1.9.5) configures the port to accept\nHTTP/2 connections.\nNormally, for this to work the ssl parameter should be\nspecified as well, but nginx can also be configured to accept HTTP/2\nconnections without SSL.\n\n\nThe spdy parameter (1.3.15-1.9.4) allows accepting\nSPDY connections on this port.\nNormally, for this to work the ssl parameter should be\nspecified as well, but nginx can also be configured to accept SPDY\nconnections without SSL.\n\n\nThe proxy_protocol parameter (1.5.12)\nallows specifying that all connections accepted on this port should use the\nPROXY\nprotocol.\n\n\nThe PROXY protocol version 2 is supported since version 1.13.11.\n\n \n\n\nThe listen directive\ncan have several additional parameters specific to socket-related system calls.\nThese parameters can be specified in any\nlisten directive, but only once for a given\naddress:port pair.\n\n\nIn versions prior to 0.8.21, they could only be\nspecified in the listen directive together with the\ndefault parameter.\n\n \n\n\n\n\nsetfib=number\n\n\nthis parameter (0.8.44) sets the associated routing table, FIB\n(the SO_SETFIB option) for the listening socket.\nThis currently works only on FreeBSD.\n\n\n\nfastopen=number\n\n\nenables\n“TCP Fast Open”\nfor the listening socket (1.5.8) and\nlimits\nthe maximum length for the queue of connections that have not yet completed\nthe three-way handshake.\n\nDo not enable this feature unless the server can handle\nreceiving the\n\nsame SYN packet with data more than once.\n\n\n\n\nbacklog=number\n\n\nsets the backlog parameter in the\nlisten() call that limits\nthe maximum length for the queue of pending connections.\nBy default,\nbacklog is set to -1 on FreeBSD, DragonFly BSD, and macOS,\nand to 511 on other platforms.\n\n\n\nrcvbuf=size\n\n\nsets the receive buffer size\n(the SO_RCVBUF option) for the listening socket.\n\n\n\nsndbuf=size\n\n\nsets the send buffer size\n(the SO_SNDBUF option) for the listening socket.\n\n\n\naccept_filter=filter\n\n\nsets the name of accept filter\n(the SO_ACCEPTFILTER option) for the listening socket\nthat filters incoming connections before passing them to\naccept().\nThis works only on FreeBSD and NetBSD 5.0+.\nPossible values are\ndataready\nand\nhttpready.\n\n\n\ndeferred\n\n\ninstructs to use a deferred accept()\n(the TCP_DEFER_ACCEPT socket option) on Linux.\n\n\n\nbind\n\n\ninstructs to make a separate bind() call for a given\naddress:port pair.\nThis is useful because if there are several listen\ndirectives with the same port but different addresses, and one of the\nlisten directives listens on all addresses\nfor the given port (*:port), nginx\nwill bind() only to *:port.\nIt should be noted that the getsockname() system call will be\nmade in this case to determine the address that accepted the connection.\nIf the setfib,\nbacklog, rcvbuf,\nsndbuf, accept_filter,\ndeferred, ipv6only,\nor so_keepalive parameters\nare used then for a given\naddress:port pair\na separate bind() call will always be made.\n\n\n\nipv6only=on|off\n\n\nthis parameter (0.7.42) determines\n(via the IPV6_V6ONLY socket option)\nwhether an IPv6 socket listening on a wildcard address [::]\nwill accept only IPv6 connections or both IPv6 and IPv4 connections.\nThis parameter is turned on by default.\nIt can only be set once on start.\n\nPrior to version 1.3.4,\nif this parameter was omitted then the operating system’s settings were\nin effect for the socket.\n\n\n\n\nreuseport\n\n\nthis parameter (1.9.1) instructs to create an individual listening socket\nfor each worker process\n(using the\nSO_REUSEPORT socket option on Linux 3.9+ and DragonFly BSD,\nor SO_REUSEPORT_LB on FreeBSD 12+), allowing a kernel\nto distribute incoming connections between worker processes.\nThis currently works only on Linux 3.9+, DragonFly BSD,\nand FreeBSD 12+ (1.15.1).\n\nInappropriate use of this option may have its security\nimplications.\n\n\n\n\nso_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]\n\n\nthis parameter (1.1.11) configures the “TCP keepalive” behavior\nfor the listening socket.\nIf this parameter is omitted then the operating system’s settings will be\nin effect for the socket.\nIf it is set to the value “on”, the\nSO_KEEPALIVE option is turned on for the socket.\nIf it is set to the value “off”, the\nSO_KEEPALIVE option is turned off for the socket.\nSome operating systems support setting of TCP keepalive parameters on\na per-socket basis using the TCP_KEEPIDLE,\nTCP_KEEPINTVL, and TCP_KEEPCNT socket options.\nOn such systems (currently, Linux 2.4+, NetBSD 5+, and\nFreeBSD 9.0-STABLE), they can be configured\nusing the keepidle, keepintvl, and\nkeepcnt parameters.\nOne or two parameters may be omitted, in which case the system default setting\nfor the corresponding socket option will be in effect.\nFor example,\nso_keepalive=30m::10\nwill set the idle timeout (TCP_KEEPIDLE) to 30 minutes,\nleave the probe interval (TCP_KEEPINTVL) at its system default,\nand set the probes count (TCP_KEEPCNT) to 10 probes.\n\n\n\n \n\n\nExample:\n\nlisten 127.0.0.1 default_server accept_filter=dataready backlog=1024;\n\n \n"
-        },
-        {
-          "name": "location",
-          "syntax": "location [ = | ~ | ~* | ^~ ] uri { ... }location @name { ... }",
-          "context": "server, location",
-          "description": "\nSets configuration depending on a request URI.\n\n\nThe matching is performed against a normalized URI,\nafter decoding the text encoded in the “%XX” form,\nresolving references to relative path components “.”\nand “..”, and possible\ncompression of two or more\nadjacent slashes into a single slash.\n\n\nA location can either be defined by a prefix string, or by a regular expression.\nRegular expressions are specified with the preceding\n“~*” modifier (for case-insensitive matching), or the\n“~” modifier (for case-sensitive matching).\nTo find location matching a given request, nginx first checks\nlocations defined using the prefix strings (prefix locations).\nAmong them, the location with the longest matching\nprefix is selected and remembered.\nThen regular expressions are checked, in the order of their appearance\nin the configuration file.\nThe search of regular expressions terminates on the first match,\nand the corresponding configuration is used.\nIf no match with a regular expression is found then the\nconfiguration of the prefix location remembered earlier is used.\n\n\nlocation blocks can be nested, with some exceptions\nmentioned below.\n\n\nFor case-insensitive operating systems such as macOS and Cygwin,\nmatching with prefix strings ignores a case (0.7.7).\nHowever, comparison is limited to one-byte locales.\n\n\nRegular expressions can contain captures (0.7.40) that can later\nbe used in other directives.\n\n\nIf the longest matching prefix location has the “^~” modifier\nthen regular expressions are not checked.\n\n\nAlso, using the “=” modifier it is possible to define\nan exact match of URI and location.\nIf an exact match is found, the search terminates.\nFor example, if a “/” request happens frequently,\ndefining “location = /” will speed up the processing\nof these requests, as search terminates right after the first\ncomparison.\nSuch a location cannot obviously contain nested locations.\n\n\n\n\nIn versions from 0.7.1 to 0.8.41, if a request matched the prefix\nlocation without the “=” and “^~”\nmodifiers, the search also terminated and regular expressions were\nnot checked.\n\n \n\n\nLet’s illustrate the above by an example:\n\nlocation = / {\n    [ configuration A ]\n}\n\nlocation / {\n    [ configuration B ]\n}\n\nlocation /documents/ {\n    [ configuration C ]\n}\n\nlocation ^~ /images/ {\n    [ configuration D ]\n}\n\nlocation ~* \\.(gif|jpg|jpeg)$ {\n    [ configuration E ]\n}\n\n \nThe “/” request will match configuration A,\nthe “/index.html” request will match configuration B,\nthe “/documents/document.html” request will match\nconfiguration C,\nthe “/images/1.gif” request will match configuration D, and\nthe “/documents/1.jpg” request will match configuration E.\n\n\nThe “@” prefix defines a named location.\nSuch a location is not used for a regular request processing, but instead\nused for request redirection.\nThey cannot be nested, and cannot contain nested locations.\n\n\nIf a location is defined by a prefix string that ends with the slash character,\nand requests are processed by one of\nproxy_pass,\nfastcgi_pass,\nuwsgi_pass,\nscgi_pass,\nmemcached_pass, or\ngrpc_pass,\nthen the special processing is performed.\nIn response to a request with URI equal to this string,\nbut without the trailing slash,\na permanent redirect with the code 301 will be returned to the requested URI\nwith the slash appended.\nIf this is not desired, an exact match of the URI and location could be\ndefined like this:\n\nlocation /user/ {\n    proxy_pass http://user.example.com;\n}\n\nlocation = /user {\n    proxy_pass http://login.example.com;\n}\n\n \n"
-        },
-        {
           "name": "log_not_found",
+          "fieldName": "LogNotFound",
           "syntax": "log_not_found on | off;",
           "default": "log_not_found on;",
           "context": "http, server, location",
@@ -259,6 +274,7 @@
         },
         {
           "name": "log_subrequest",
+          "fieldName": "LogSubrequest",
           "syntax": "log_subrequest on | off;",
           "default": "log_subrequest off;",
           "context": "http, server, location",
@@ -266,12 +282,14 @@
         },
         {
           "name": "max_ranges",
+          "fieldName": "MaxRanges",
           "syntax": "max_ranges number;",
           "context": "http, server, location",
           "description": "\nLimits the maximum allowed number of ranges in byte-range requests.\nRequests that exceed the limit are processed as if there were no\nbyte ranges specified.\nBy default, the number of ranges is not limited.\nThe zero value disables the byte-range support completely.\n"
         },
         {
           "name": "merge_slashes",
+          "fieldName": "MergeSlashes",
           "syntax": "merge_slashes on | off;",
           "default": "merge_slashes on;",
           "context": "http, server",
@@ -279,6 +297,7 @@
         },
         {
           "name": "msie_padding",
+          "fieldName": "MsiePadding",
           "syntax": "msie_padding on | off;",
           "default": "msie_padding on;",
           "context": "http, server, location",
@@ -286,6 +305,7 @@
         },
         {
           "name": "msie_refresh",
+          "fieldName": "MsieRefresh",
           "syntax": "msie_refresh on | off;",
           "default": "msie_refresh off;",
           "context": "http, server, location",
@@ -293,6 +313,7 @@
         },
         {
           "name": "open_file_cache",
+          "fieldName": "OpenFileCache",
           "syntax": "open_file_cache off;open_file_cache max=N [inactive=time];",
           "default": "open_file_cache off;",
           "context": "http, server, location",
@@ -300,6 +321,7 @@
         },
         {
           "name": "open_file_cache_errors",
+          "fieldName": "OpenFileCacheErrors",
           "syntax": "open_file_cache_errors on | off;",
           "default": "open_file_cache_errors off;",
           "context": "http, server, location",
@@ -307,6 +329,7 @@
         },
         {
           "name": "open_file_cache_min_uses",
+          "fieldName": "OpenFileCacheMinUses",
           "syntax": "open_file_cache_min_uses number;",
           "default": "open_file_cache_min_uses 1;",
           "context": "http, server, location",
@@ -314,6 +337,7 @@
         },
         {
           "name": "open_file_cache_valid",
+          "fieldName": "OpenFileCacheValid",
           "syntax": "open_file_cache_valid time;",
           "default": "open_file_cache_valid 60s;",
           "context": "http, server, location",
@@ -321,6 +345,7 @@
         },
         {
           "name": "output_buffers",
+          "fieldName": "OutputBuffers",
           "syntax": "output_buffers number size;",
           "default": "output_buffers 2 32k;",
           "context": "http, server, location",
@@ -328,6 +353,7 @@
         },
         {
           "name": "port_in_redirect",
+          "fieldName": "PortInRedirect",
           "syntax": "port_in_redirect on | off;",
           "default": "port_in_redirect on;",
           "context": "http, server, location",
@@ -335,6 +361,7 @@
         },
         {
           "name": "postpone_output",
+          "fieldName": "PostponeOutput",
           "syntax": "postpone_output size;",
           "default": "postpone_output 1460;",
           "context": "http, server, location",
@@ -342,6 +369,7 @@
         },
         {
           "name": "read_ahead",
+          "fieldName": "ReadAhead",
           "syntax": "read_ahead size;",
           "default": "read_ahead 0;",
           "context": "http, server, location",
@@ -349,6 +377,7 @@
         },
         {
           "name": "recursive_error_pages",
+          "fieldName": "RecursiveErrorPages",
           "syntax": "recursive_error_pages on | off;",
           "default": "recursive_error_pages off;",
           "context": "http, server, location",
@@ -356,6 +385,7 @@
         },
         {
           "name": "request_pool_size",
+          "fieldName": "RequestPoolSize",
           "syntax": "request_pool_size size;",
           "default": "request_pool_size 4k;",
           "context": "http, server",
@@ -363,6 +393,7 @@
         },
         {
           "name": "reset_timedout_connection",
+          "fieldName": "ResetTimedoutConnection",
           "syntax": "reset_timedout_connection on | off;",
           "default": "reset_timedout_connection off;",
           "context": "http, server, location",
@@ -370,12 +401,14 @@
         },
         {
           "name": "resolver",
+          "fieldName": "Resolver",
           "syntax": "resolver address ... [valid=time] [ipv6=on|off];",
           "context": "http, server, location",
           "description": "\nConfigures name servers used to resolve names of upstream servers\ninto addresses, for example:\n\nresolver 127.0.0.1 [::1]:5353;\n\n \nAn address can be specified as a domain name or IP address,\nand an optional port (1.3.1, 1.2.2).\nIf port is not specified, the port 53 is used.\nName servers are queried in a round-robin fashion.\n\n\nBefore version 1.1.7, only a single name server could be configured.\nSpecifying name servers using IPv6 addresses is supported\nstarting from versions 1.3.1 and 1.2.2.\n\n \nBy default, nginx will look up both IPv4 and IPv6 addresses while resolving.\nIf looking up of IPv6 addresses is not desired,\nthe ipv6=off parameter can be specified.\n\n\nResolving of names into IPv6 addresses is supported\nstarting from version 1.5.8.\n\n \nBy default, nginx caches answers using the TTL value of a response.\nAn optional valid parameter allows overriding it:\n\nresolver 127.0.0.1 [::1]:5353 valid=30s;\n\n \n\n\nBefore version 1.1.9, tuning of caching time was not possible,\nand nginx always cached answers for the duration of 5 minutes.\n\n \n\n\nTo prevent DNS spoofing, it is recommended\nconfiguring DNS servers in a properly secured trusted local network.\n\n \n"
         },
         {
           "name": "resolver_timeout",
+          "fieldName": "ResolverTimeout",
           "syntax": "resolver_timeout time;",
           "default": "resolver_timeout 30s;",
           "context": "http, server, location",
@@ -383,6 +416,7 @@
         },
         {
           "name": "root",
+          "fieldName": "Root",
           "syntax": "root path;",
           "default": "root html;",
           "context": "http, server, location, if in location",
@@ -390,6 +424,7 @@
         },
         {
           "name": "satisfy",
+          "fieldName": "Satisfy",
           "syntax": "satisfy all | any;",
           "default": "satisfy all;",
           "context": "http, server, location",
@@ -397,6 +432,7 @@
         },
         {
           "name": "send_lowat",
+          "fieldName": "SendLowat",
           "syntax": "send_lowat size;",
           "default": "send_lowat 0;",
           "context": "http, server, location",
@@ -404,6 +440,7 @@
         },
         {
           "name": "send_timeout",
+          "fieldName": "SendTimeout",
           "syntax": "send_timeout time;",
           "default": "send_timeout 60s;",
           "context": "http, server, location",
@@ -411,6 +448,7 @@
         },
         {
           "name": "sendfile",
+          "fieldName": "Sendfile",
           "syntax": "sendfile on | off;",
           "default": "sendfile off;",
           "context": "http, server, location, if in location",
@@ -418,19 +456,15 @@
         },
         {
           "name": "sendfile_max_chunk",
+          "fieldName": "SendfileMaxChunk",
           "syntax": "sendfile_max_chunk size;",
           "default": "sendfile_max_chunk 0;",
           "context": "http, server, location",
           "description": "\nWhen set to a non-zero value, limits the amount of data that can be\ntransferred in a single sendfile() call.\nWithout the limit, one fast connection may seize the worker process entirely.\n"
         },
         {
-          "name": "server",
-          "syntax": "server { ... }",
-          "context": "http",
-          "description": "\nSets configuration for a virtual server.\nThere is no clear separation between IP-based (based on the IP address)\nand name-based (based on the “Host” request header field)\nvirtual servers.\nInstead, the listen directives describe all\naddresses and ports that should accept connections for the server, and the\nserver_name directive lists all server names.\nExample configurations are provided in the\n“How nginx processes a request” document.\n"
-        },
-        {
           "name": "server_name",
+          "fieldName": "ServerName",
           "syntax": "server_name name ...;",
           "default": "server_name \"\";",
           "context": "server",
@@ -438,6 +472,7 @@
         },
         {
           "name": "server_name_in_redirect",
+          "fieldName": "ServerNameInRedirect",
           "syntax": "server_name_in_redirect on | off;",
           "default": "server_name_in_redirect off;",
           "context": "http, server, location",
@@ -445,6 +480,7 @@
         },
         {
           "name": "server_names_hash_bucket_size",
+          "fieldName": "ServerNamesHashBucketSize",
           "syntax": "server_names_hash_bucket_size size;",
           "default": "server_names_hash_bucket_size 32|64|128;",
           "context": "http",
@@ -452,6 +488,7 @@
         },
         {
           "name": "server_names_hash_max_size",
+          "fieldName": "ServerNamesHashMaxSize",
           "syntax": "server_names_hash_max_size size;",
           "default": "server_names_hash_max_size 512;",
           "context": "http",
@@ -459,6 +496,7 @@
         },
         {
           "name": "server_tokens",
+          "fieldName": "ServerTokens",
           "syntax": "server_tokens on | off | build | string;",
           "default": "server_tokens on;",
           "context": "http, server, location",
@@ -466,6 +504,7 @@
         },
         {
           "name": "subrequest_output_buffer_size",
+          "fieldName": "SubrequestOutputBufferSize",
           "syntax": "subrequest_output_buffer_size size;",
           "default": "subrequest_output_buffer_size 4k|8k;",
           "context": "http, server, location",
@@ -473,6 +512,7 @@
         },
         {
           "name": "tcp_nodelay",
+          "fieldName": "TcpNodelay",
           "syntax": "tcp_nodelay on | off;",
           "default": "tcp_nodelay on;",
           "context": "http, server, location",
@@ -480,6 +520,7 @@
         },
         {
           "name": "tcp_nopush",
+          "fieldName": "TcpNopush",
           "syntax": "tcp_nopush on | off;",
           "default": "tcp_nopush off;",
           "context": "http, server, location",
@@ -487,12 +528,14 @@
         },
         {
           "name": "try_files",
+          "fieldName": "TryFiles",
           "syntax": "try_files file ... uri;try_files file ... =code;",
           "context": "server, location",
           "description": "\nChecks the existence of files in the specified order and uses\nthe first found file for request processing; the processing\nis performed in the current context.\nThe path to a file is constructed from the\nfile parameter\naccording to the\nroot and alias directives.\nIt is possible to check directory’s existence by specifying\na slash at the end of a name, e.g. “$uri/”.\nIf none of the files were found, an internal redirect to the\nuri specified in the last parameter is made.\nFor example:\n\nlocation /images/ {\n    try_files $uri /images/default.gif;\n}\n\nlocation = /images/default.gif {\n    expires 30s;\n}\n\n \nThe last parameter can also point to a named location,\nas shown in examples below.\nStarting from version 0.7.51, the last parameter can also be a\ncode:\n\nlocation / {\n    try_files $uri $uri/index.html $uri.html =404;\n}\n\n \n\n\nExample in proxying Mongrel:\n\nlocation / {\n    try_files /system/maintenance.html\n              $uri $uri/index.html $uri.html\n              @mongrel;\n}\n\nlocation @mongrel {\n    proxy_pass http://mongrel;\n}\n\n \n\n\nExample for Drupal/FastCGI:\n\nlocation / {\n    try_files $uri $uri/ @drupal;\n}\n\nlocation ~ \\.php$ {\n    try_files $uri @drupal;\n\n    fastcgi_pass ...;\n\n    fastcgi_param SCRIPT_FILENAME /path/to$fastcgi_script_name;\n    fastcgi_param SCRIPT_NAME     $fastcgi_script_name;\n    fastcgi_param QUERY_STRING    $args;\n\n    ... other fastcgi_param's\n}\n\nlocation @drupal {\n    fastcgi_pass ...;\n\n    fastcgi_param SCRIPT_FILENAME /path/to/index.php;\n    fastcgi_param SCRIPT_NAME     /index.php;\n    fastcgi_param QUERY_STRING    q=$uri&$args;\n\n    ... other fastcgi_param's\n}\n\n \nIn the following example,\n\nlocation / {\n    try_files $uri $uri/ @drupal;\n}\n\n \nthe try_files directive is equivalent to\n\nlocation / {\n    error_page 404 = @drupal;\n    log_not_found off;\n}\n\n \nAnd here,\n\nlocation ~ \\.php$ {\n    try_files $uri @drupal;\n\n    fastcgi_pass ...;\n\n    fastcgi_param SCRIPT_FILENAME /path/to$fastcgi_script_name;\n\n    ...\n}\n\n \ntry_files checks the existence of the PHP file\nbefore passing the request to the FastCGI server.\n\n\nExample for Wordpress and Joomla:\n\nlocation / {\n    try_files $uri $uri/ @wordpress;\n}\n\nlocation ~ \\.php$ {\n    try_files $uri @wordpress;\n\n    fastcgi_pass ...;\n\n    fastcgi_param SCRIPT_FILENAME /path/to$fastcgi_script_name;\n    ... other fastcgi_param's\n}\n\nlocation @wordpress {\n    fastcgi_pass ...;\n\n    fastcgi_param SCRIPT_FILENAME /path/to/index.php;\n    ... other fastcgi_param's\n}\n\n \n"
         },
         {
           "name": "types",
+          "fieldName": "Types",
           "syntax": "types { ... }",
           "default": "types { text/html html; image/gif gif; image/jpeg jpg; }",
           "context": "http, server, location",
@@ -500,6 +543,7 @@
         },
         {
           "name": "types_hash_bucket_size",
+          "fieldName": "TypesHashBucketSize",
           "syntax": "types_hash_bucket_size size;",
           "default": "types_hash_bucket_size 64;",
           "context": "http, server, location",
@@ -507,6 +551,7 @@
         },
         {
           "name": "types_hash_max_size",
+          "fieldName": "TypesHashMaxSize",
           "syntax": "types_hash_max_size size;",
           "default": "types_hash_max_size 1024;",
           "context": "http, server, location",
@@ -514,6 +559,7 @@
         },
         {
           "name": "underscores_in_headers",
+          "fieldName": "UnderscoresInHeaders",
           "syntax": "underscores_in_headers on | off;",
           "default": "underscores_in_headers off;",
           "context": "http, server",
@@ -521,6 +567,7 @@
         },
         {
           "name": "variables_hash_bucket_size",
+          "fieldName": "VariablesHashBucketSize",
           "syntax": "variables_hash_bucket_size size;",
           "default": "variables_hash_bucket_size 64;",
           "context": "http",
@@ -528,6 +575,7 @@
         },
         {
           "name": "variables_hash_max_size",
+          "fieldName": "VariablesHashMaxSize",
           "syntax": "variables_hash_max_size size;",
           "default": "variables_hash_max_size 1024;",
           "context": "http",
@@ -541,12 +589,14 @@
       "directives": [
         {
           "name": "allow",
+          "fieldName": "Allow",
           "syntax": "allow address | CIDR | unix: | all;",
           "context": "http, server, location, limit_except",
           "description": "\nAllows access for the specified network or address.\nIf the special value unix: is specified (1.5.1),\nallows access for all UNIX-domain sockets.\n"
         },
         {
           "name": "deny",
+          "fieldName": "Deny",
           "syntax": "deny address | CIDR | unix: | all;",
           "context": "http, server, location, limit_except",
           "description": "\nDenies access for the specified network or address.\nIf the special value unix: is specified (1.5.1),\ndenies access for all UNIX-domain sockets.\n"
@@ -559,18 +609,21 @@
       "directives": [
         {
           "name": "add_before_body",
+          "fieldName": "AddBeforeBody",
           "syntax": "add_before_body uri;",
           "context": "http, server, location",
           "description": "\nAdds the text returned as a result of processing a given subrequest\nbefore the response body.\nAn empty string (\"\") as a parameter cancels addition\ninherited from the previous configuration level.\n"
         },
         {
           "name": "add_after_body",
+          "fieldName": "AddAfterBody",
           "syntax": "add_after_body uri;",
           "context": "http, server, location",
           "description": "\nAdds the text returned as a result of processing a given subrequest\nafter the response body.\nAn empty string (\"\") as a parameter cancels addition\ninherited from the previous configuration level.\n"
         },
         {
           "name": "addition_types",
+          "fieldName": "AdditionTypes",
           "syntax": "addition_types mime-type ...;",
           "default": "addition_types text/html;",
           "context": "http, server, location",
@@ -584,12 +637,14 @@
       "directives": [
         {
           "name": "api",
+          "fieldName": "Api",
           "syntax": "api [write=on|off];",
           "context": "location",
           "description": "\nTurns on the REST API interface in the surrounding location.\nAccess to this location should be\nlimited.\n\n\nThe write parameter determines whether the API\nis read-only or read-write.\nBy default, the API is read-only.\n"
         },
         {
           "name": "status_zone",
+          "fieldName": "StatusZone",
           "syntax": "status_zone zone;",
           "context": "server",
           "description": "\nEnables collection of virtual\nhttp\nor\nstream\nserver status information in the specified zone.\nSeveral servers may share the same zone.\n"
@@ -602,6 +657,7 @@
       "directives": [
         {
           "name": "auth_basic",
+          "fieldName": "AuthBasic",
           "syntax": "auth_basic string | off;",
           "default": "auth_basic off;",
           "context": "http, server, location, limit_except",
@@ -609,6 +665,7 @@
         },
         {
           "name": "auth_basic_user_file",
+          "fieldName": "AuthBasicUserFile",
           "syntax": "auth_basic_user_file file;",
           "context": "http, server, location, limit_except",
           "description": "\nSpecifies a file that keeps user names and passwords,\nin the following format:\n\n# comment\nname1:password1\nname2:password2:comment\nname3:password3\n\n \nThe file name can contain variables.\n\n\nThe following password types are supported:\n\n\n\n\nencrypted with the crypt() function; can be generated using\nthe “htpasswd” utility from the Apache HTTP Server\ndistribution or the “openssl passwd” command;\n\n\n\nhashed with the Apache variant of the MD5-based password algorithm (apr1);\ncan be generated with the same tools;\n\n\n\nspecified by the\n“{scheme}data”\nsyntax (1.0.3+) as described in\nRFC 2307;\ncurrently implemented schemes include PLAIN (an example one,\nshould not be used), SHA (1.3.13) (plain SHA-1\nhashing, should not be used) and SSHA (salted SHA-1 hashing,\nused by some software packages, notably OpenLDAP and Dovecot).\n\nSupport for SHA scheme was added only to aid\nin migration from other web servers.\nIt should not be used for new passwords, since unsalted SHA-1 hashing\nthat it employs is vulnerable to\nrainbow table\nattacks.\n\n\n\n\n \n"
@@ -621,6 +678,7 @@
       "directives": [
         {
           "name": "auth_request",
+          "fieldName": "AuthRequest",
           "syntax": "auth_request uri | off;",
           "default": "auth_request off;",
           "context": "http, server, location",
@@ -628,6 +686,7 @@
         },
         {
           "name": "auth_request_set",
+          "fieldName": "AuthRequestSet",
           "syntax": "auth_request_set $variable value;",
           "context": "http, server, location",
           "description": "\nSets the request variable to the given\nvalue after the authorization request completes.\nThe value may contain variables from the authorization request,\nsuch as $upstream_http_*.\n"
@@ -640,12 +699,14 @@
       "directives": [
         {
           "name": "ancient_browser",
+          "fieldName": "AncientBrowser",
           "syntax": "ancient_browser string ...;",
           "context": "http, server, location",
           "description": "\nIf any of the specified substrings is found in the “User-Agent”\nrequest header field, the browser will be considered ancient.\nThe special string “netscape4” corresponds to the\nregular expression “^Mozilla/[1-4]”.\n"
         },
         {
           "name": "ancient_browser_value",
+          "fieldName": "AncientBrowserValue",
           "syntax": "ancient_browser_value string;",
           "default": "ancient_browser_value 1;",
           "context": "http, server, location",
@@ -653,12 +714,14 @@
         },
         {
           "name": "modern_browser",
+          "fieldName": "ModernBrowser",
           "syntax": "modern_browser browser version;modern_browser unlisted;",
           "context": "http, server, location",
           "description": "\nSpecifies a version starting from which a browser is considered modern.\nA browser can be any one of the following: msie,\ngecko (browsers based on Mozilla),\nopera, safari,\nor konqueror.\n\n\nVersions can be specified in the following formats: X, X.X, X.X.X, or X.X.X.X.\nThe maximum values for each of the format are\n4000, 4000.99, 4000.99.99, and 4000.99.99.99, respectively.\n\n\nThe special value unlisted specifies to consider\na browser as modern if it was not listed by the\nmodern_browser and ancient_browser\ndirectives.\nOtherwise such a browser is considered ancient.\nIf a request does not provide the “User-Agent” field\nin the header, the browser is treated as not being listed.\n"
         },
         {
           "name": "modern_browser_value",
+          "fieldName": "ModernBrowserValue",
           "syntax": "modern_browser_value string;",
           "default": "modern_browser_value 1;",
           "context": "http, server, location",
@@ -672,6 +735,7 @@
       "directives": [
         {
           "name": "charset",
+          "fieldName": "Charset",
           "syntax": "charset charset | off;",
           "default": "charset off;",
           "context": "http, server, location, if in location",
@@ -679,12 +743,14 @@
         },
         {
           "name": "charset_map",
+          "fieldName": "CharsetMap",
           "syntax": "charset_map charset1 charset2 { ... }",
           "context": "http",
           "description": "\nDescribes the conversion table from one charset to another.\nA reverse conversion table is built using the same data.\nCharacter codes are given in hexadecimal.\nMissing characters in the range 80-FF are replaced with “?”.\nWhen converting from UTF-8, characters missing in a one-byte charset\nare replaced with “&#XXXX;”.\n\n\nExample:\n\ncharset_map koi8-r windows-1251 {\n    C0 FE ; # small yu\n    C1 E0 ; # small a\n    C2 E1 ; # small b\n    C3 F6 ; # small ts\n    ...\n}\n\n \n\n\nWhen describing a conversion table to UTF-8, codes for the UTF-8 charset should\nbe given in the second column, for example:\n\ncharset_map koi8-r utf-8 {\n    C0 D18E ; # small yu\n    C1 D0B0 ; # small a\n    C2 D0B1 ; # small b\n    C3 D186 ; # small ts\n    ...\n}\n\n \n\n\nFull conversion tables from koi8-r to\nwindows-1251, and from koi8-r and\nwindows-1251 to utf-8\nare provided in the distribution files conf/koi-win,\nconf/koi-utf, and conf/win-utf.\n"
         },
         {
           "name": "charset_types",
+          "fieldName": "CharsetTypes",
           "syntax": "charset_types mime-type ...;",
           "default": "charset_types text/html text/xml text/plain text/vnd.wap.wml application/javascript application/rss+xml;",
           "context": "http, server, location",
@@ -692,6 +758,7 @@
         },
         {
           "name": "override_charset",
+          "fieldName": "OverrideCharset",
           "syntax": "override_charset on | off;",
           "default": "override_charset off;",
           "context": "http, server, location, if in location",
@@ -699,6 +766,7 @@
         },
         {
           "name": "source_charset",
+          "fieldName": "SourceCharset",
           "syntax": "source_charset charset;",
           "context": "http, server, location, if in location",
           "description": "\nDefines the source charset of a response.\nIf this charset is different from the charset specified\nin the charset directive, a conversion is performed.\n"
@@ -711,6 +779,7 @@
       "directives": [
         {
           "name": "empty_gif;",
+          "fieldName": "EmptyGif;",
           "syntax": "empty_gif;",
           "context": "location",
           "description": "\nTurns on module processing in a surrounding location.\n"
@@ -723,12 +792,14 @@
       "directives": [
         {
           "name": "fastcgi_bind",
+          "fieldName": "FastcgiBind",
           "syntax": "fastcgi_bind address [transparent] | off;",
           "context": "http, server, location",
           "description": "\nMakes outgoing connections to a FastCGI server originate\nfrom the specified local IP address with an optional port (1.11.2).\nParameter value can contain variables (1.3.12).\nThe special value off (1.3.12) cancels the effect\nof the fastcgi_bind directive\ninherited from the previous configuration level, which allows the\nsystem to auto-assign the local IP address and port.\n"
         },
         {
           "name": "fastcgi_buffer_size",
+          "fieldName": "FastcgiBufferSize",
           "syntax": "fastcgi_buffer_size size;",
           "default": "fastcgi_buffer_size 4k|8k;",
           "context": "http, server, location",
@@ -736,6 +807,7 @@
         },
         {
           "name": "fastcgi_buffering",
+          "fieldName": "FastcgiBuffering",
           "syntax": "fastcgi_buffering on | off;",
           "default": "fastcgi_buffering on;",
           "context": "http, server, location",
@@ -743,6 +815,7 @@
         },
         {
           "name": "fastcgi_buffers",
+          "fieldName": "FastcgiBuffers",
           "syntax": "fastcgi_buffers number size;",
           "default": "fastcgi_buffers 8 4k|8k;",
           "context": "http, server, location",
@@ -750,6 +823,7 @@
         },
         {
           "name": "fastcgi_busy_buffers_size",
+          "fieldName": "FastcgiBusyBuffersSize",
           "syntax": "fastcgi_busy_buffers_size size;",
           "default": "fastcgi_busy_buffers_size 8k|16k;",
           "context": "http, server, location",
@@ -757,6 +831,7 @@
         },
         {
           "name": "fastcgi_cache",
+          "fieldName": "FastcgiCache",
           "syntax": "fastcgi_cache zone | off;",
           "default": "fastcgi_cache off;",
           "context": "http, server, location",
@@ -764,6 +839,7 @@
         },
         {
           "name": "fastcgi_cache_background_update",
+          "fieldName": "FastcgiCacheBackgroundUpdate",
           "syntax": "fastcgi_cache_background_update on | off;",
           "default": "fastcgi_cache_background_update off;",
           "context": "http, server, location",
@@ -771,18 +847,21 @@
         },
         {
           "name": "fastcgi_cache_bypass",
+          "fieldName": "FastcgiCacheBypass",
           "syntax": "fastcgi_cache_bypass string ...;",
           "context": "http, server, location",
           "description": "\nDefines conditions under which the response will not be taken from a cache.\nIf at least one value of the string parameters is not empty and is not\nequal to “0” then the response will not be taken from the cache:\n\nfastcgi_cache_bypass $cookie_nocache $arg_nocache$arg_comment;\nfastcgi_cache_bypass $http_pragma    $http_authorization;\n\n \nCan be used along with the fastcgi_no_cache directive.\n"
         },
         {
           "name": "fastcgi_cache_key",
+          "fieldName": "FastcgiCacheKey",
           "syntax": "fastcgi_cache_key string;",
           "context": "http, server, location",
           "description": "\nDefines a key for caching, for example\n\nfastcgi_cache_key localhost:9000$request_uri;\n\n \n"
         },
         {
           "name": "fastcgi_cache_lock",
+          "fieldName": "FastcgiCacheLock",
           "syntax": "fastcgi_cache_lock on | off;",
           "default": "fastcgi_cache_lock off;",
           "context": "http, server, location",
@@ -790,6 +869,7 @@
         },
         {
           "name": "fastcgi_cache_lock_age",
+          "fieldName": "FastcgiCacheLockAge",
           "syntax": "fastcgi_cache_lock_age time;",
           "default": "fastcgi_cache_lock_age 5s;",
           "context": "http, server, location",
@@ -797,6 +877,7 @@
         },
         {
           "name": "fastcgi_cache_lock_timeout",
+          "fieldName": "FastcgiCacheLockTimeout",
           "syntax": "fastcgi_cache_lock_timeout time;",
           "default": "fastcgi_cache_lock_timeout 5s;",
           "context": "http, server, location",
@@ -804,12 +885,14 @@
         },
         {
           "name": "fastcgi_cache_max_range_offset",
+          "fieldName": "FastcgiCacheMaxRangeOffset",
           "syntax": "fastcgi_cache_max_range_offset number;",
           "context": "http, server, location",
           "description": "\nSets an offset in bytes for byte-range requests.\nIf the range is beyond the offset,\nthe range request will be passed to the FastCGI server\nand the response will not be cached.\n"
         },
         {
           "name": "fastcgi_cache_methods",
+          "fieldName": "FastcgiCacheMethods",
           "syntax": "fastcgi_cache_methods GET | HEAD | POST ...;",
           "default": "fastcgi_cache_methods GET HEAD;",
           "context": "http, server, location",
@@ -817,6 +900,7 @@
         },
         {
           "name": "fastcgi_cache_min_uses",
+          "fieldName": "FastcgiCacheMinUses",
           "syntax": "fastcgi_cache_min_uses number;",
           "default": "fastcgi_cache_min_uses 1;",
           "context": "http, server, location",
@@ -824,6 +908,7 @@
         },
         {
           "name": "fastcgi_cache_revalidate",
+          "fieldName": "FastcgiCacheRevalidate",
           "syntax": "fastcgi_cache_revalidate on | off;",
           "default": "fastcgi_cache_revalidate off;",
           "context": "http, server, location",
@@ -831,6 +916,7 @@
         },
         {
           "name": "fastcgi_cache_use_stale",
+          "fieldName": "FastcgiCacheUseStale",
           "syntax": "fastcgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;",
           "default": "fastcgi_cache_use_stale off;",
           "context": "http, server, location",
@@ -838,18 +924,21 @@
         },
         {
           "name": "fastcgi_cache_valid",
+          "fieldName": "FastcgiCacheValid",
           "syntax": "fastcgi_cache_valid [code ...] time;",
           "context": "http, server, location",
           "description": "\nSets caching time for different response codes.\nFor example, the following directives\n\nfastcgi_cache_valid 200 302 10m;\nfastcgi_cache_valid 404      1m;\n\n \nset 10 minutes of caching for responses with codes 200 and 302\nand 1 minute for responses with code 404.\n\n\nIf only caching time is specified\n\nfastcgi_cache_valid 5m;\n\n \nthen only 200, 301, and 302 responses are cached.\n\n\nIn addition, the any parameter can be specified\nto cache any responses:\n\nfastcgi_cache_valid 200 302 10m;\nfastcgi_cache_valid 301      1h;\nfastcgi_cache_valid any      1m;\n\n \n\n\nParameters of caching can also be set directly\nin the response header.\nThis has higher priority than setting of caching time using the directive.\n\n\n\n\nThe “X-Accel-Expires” header field sets caching time of a\nresponse in seconds.\nThe zero value disables caching for a response.\nIf the value starts with the @ prefix, it sets an absolute\ntime in seconds since Epoch, up to which the response may be cached.\n\n\n\nIf the header does not include the “X-Accel-Expires” field,\nparameters of caching may be set in the header fields\n“Expires” or “Cache-Control”.\n\n\n\nIf the header includes the “Set-Cookie” field, such a\nresponse will not be cached.\n\n\n\nIf the header includes the “Vary” field\nwith the special value “*”, such a\nresponse will not be cached (1.7.7).\nIf the header includes the “Vary” field\nwith another value, such a response will be cached\ntaking into account the corresponding request header fields (1.7.7).\n\n\n\n \nProcessing of one or more of these response header fields can be disabled\nusing the fastcgi_ignore_headers directive.\n"
         },
         {
           "name": "fastcgi_catch_stderr",
+          "fieldName": "FastcgiCatchStderr",
           "syntax": "fastcgi_catch_stderr string;",
           "context": "http, server, location",
           "description": "\nSets a string to search for in the error stream of a response\nreceived from a FastCGI server.\nIf the string is found then it is considered that the FastCGI\nserver has returned an invalid response.\nThis allows handling application errors in nginx, for example:\n\nlocation /php/ {\n    fastcgi_pass backend:9000;\n    ...\n    fastcgi_catch_stderr \"PHP Fatal error\";\n    fastcgi_next_upstream error timeout invalid_header;\n}\n\n \n"
         },
         {
           "name": "fastcgi_connect_timeout",
+          "fieldName": "FastcgiConnectTimeout",
           "syntax": "fastcgi_connect_timeout time;",
           "default": "fastcgi_connect_timeout 60s;",
           "context": "http, server, location",
@@ -857,6 +946,7 @@
         },
         {
           "name": "fastcgi_force_ranges",
+          "fieldName": "FastcgiForceRanges",
           "syntax": "fastcgi_force_ranges on | off;",
           "default": "fastcgi_force_ranges off;",
           "context": "http, server, location",
@@ -864,12 +954,14 @@
         },
         {
           "name": "fastcgi_hide_header",
+          "fieldName": "FastcgiHideHeader",
           "syntax": "fastcgi_hide_header field;",
           "context": "http, server, location",
           "description": "\nBy default,\nnginx does not pass the header fields “Status” and\n“X-Accel-...” from the response of a FastCGI\nserver to a client.\nThe fastcgi_hide_header directive sets additional fields\nthat will not be passed.\nIf, on the contrary, the passing of fields needs to be permitted,\nthe fastcgi_pass_header directive can be used.\n"
         },
         {
           "name": "fastcgi_ignore_client_abort",
+          "fieldName": "FastcgiIgnoreClientAbort",
           "syntax": "fastcgi_ignore_client_abort on | off;",
           "default": "fastcgi_ignore_client_abort off;",
           "context": "http, server, location",
@@ -877,18 +969,21 @@
         },
         {
           "name": "fastcgi_ignore_headers",
+          "fieldName": "FastcgiIgnoreHeaders",
           "syntax": "fastcgi_ignore_headers field ...;",
           "context": "http, server, location",
           "description": "\nDisables processing of certain response header fields from the FastCGI server.\nThe following fields can be ignored: “X-Accel-Redirect”,\n“X-Accel-Expires”, “X-Accel-Limit-Rate” (1.1.6),\n“X-Accel-Buffering” (1.1.6),\n“X-Accel-Charset” (1.1.6), “Expires”,\n“Cache-Control”, “Set-Cookie” (0.8.44),\nand “Vary” (1.7.7).\n\n\nIf not disabled, processing of these header fields has the following\neffect:\n\n\n\n\n“X-Accel-Expires”, “Expires”,\n“Cache-Control”, “Set-Cookie”,\nand “Vary”\nset the parameters of response caching;\n\n\n\n“X-Accel-Redirect” performs an\ninternal\nredirect to the specified URI;\n\n\n\n“X-Accel-Limit-Rate” sets the\nrate\nlimit for transmission of a response to a client;\n\n\n\n“X-Accel-Buffering” enables or disables\nbuffering of a response;\n\n\n\n“X-Accel-Charset” sets the desired\ncharset\nof a response.\n\n\n\n \n"
         },
         {
           "name": "fastcgi_index",
+          "fieldName": "FastcgiIndex",
           "syntax": "fastcgi_index name;",
           "context": "http, server, location",
           "description": "\nSets a file name that will be appended after a URI that ends with\na slash, in the value of the $fastcgi_script_name variable.\nFor example, with these settings\n\nfastcgi_index index.php;\nfastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;\n\n \nand the “/page.php” request,\nthe SCRIPT_FILENAME parameter will be equal to\n“/home/www/scripts/php/page.php”,\nand with the “/” request it will be equal to\n“/home/www/scripts/php/index.php”.\n"
         },
         {
           "name": "fastcgi_intercept_errors",
+          "fieldName": "FastcgiInterceptErrors",
           "syntax": "fastcgi_intercept_errors on | off;",
           "default": "fastcgi_intercept_errors off;",
           "context": "http, server, location",
@@ -896,6 +991,7 @@
         },
         {
           "name": "fastcgi_keep_conn",
+          "fieldName": "FastcgiKeepConn",
           "syntax": "fastcgi_keep_conn on | off;",
           "default": "fastcgi_keep_conn off;",
           "context": "http, server, location",
@@ -903,6 +999,7 @@
         },
         {
           "name": "fastcgi_limit_rate",
+          "fieldName": "FastcgiLimitRate",
           "syntax": "fastcgi_limit_rate rate;",
           "default": "fastcgi_limit_rate 0;",
           "context": "http, server, location",
@@ -910,6 +1007,7 @@
         },
         {
           "name": "fastcgi_max_temp_file_size",
+          "fieldName": "FastcgiMaxTempFileSize",
           "syntax": "fastcgi_max_temp_file_size size;",
           "default": "fastcgi_max_temp_file_size 1024m;",
           "context": "http, server, location",
@@ -917,6 +1015,7 @@
         },
         {
           "name": "fastcgi_next_upstream",
+          "fieldName": "FastcgiNextUpstream",
           "syntax": "fastcgi_next_upstream error | timeout | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;",
           "default": "fastcgi_next_upstream error timeout;",
           "context": "http, server, location",
@@ -924,6 +1023,7 @@
         },
         {
           "name": "fastcgi_next_upstream_timeout",
+          "fieldName": "FastcgiNextUpstreamTimeout",
           "syntax": "fastcgi_next_upstream_timeout time;",
           "default": "fastcgi_next_upstream_timeout 0;",
           "context": "http, server, location",
@@ -931,6 +1031,7 @@
         },
         {
           "name": "fastcgi_next_upstream_tries",
+          "fieldName": "FastcgiNextUpstreamTries",
           "syntax": "fastcgi_next_upstream_tries number;",
           "default": "fastcgi_next_upstream_tries 0;",
           "context": "http, server, location",
@@ -938,30 +1039,35 @@
         },
         {
           "name": "fastcgi_no_cache",
+          "fieldName": "FastcgiNoCache",
           "syntax": "fastcgi_no_cache string ...;",
           "context": "http, server, location",
           "description": "\nDefines conditions under which the response will not be saved to a cache.\nIf at least one value of the string parameters is not empty and is not\nequal to “0” then the response will not be saved:\n\nfastcgi_no_cache $cookie_nocache $arg_nocache$arg_comment;\nfastcgi_no_cache $http_pragma    $http_authorization;\n\n \nCan be used along with the fastcgi_cache_bypass directive.\n"
         },
         {
           "name": "fastcgi_param",
+          "fieldName": "FastcgiParam",
           "syntax": "fastcgi_param parameter value [if_not_empty];",
           "context": "http, server, location",
           "description": "\nSets a parameter that should be passed to the FastCGI server.\nThe value can contain text, variables, and their combination.\nThese directives are inherited from the previous level if and\nonly if there are no\nfastcgi_param\ndirectives defined on the current level.\n\n\nThe following example shows the minimum required settings for PHP:\n\nfastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;\nfastcgi_param QUERY_STRING    $query_string;\n\n \n\n\nThe SCRIPT_FILENAME parameter is used in PHP for\ndetermining the script name, and the QUERY_STRING\nparameter is used to pass request parameters.\n\n\nFor scripts that process POST requests, the\nfollowing three parameters are also required:\n\nfastcgi_param REQUEST_METHOD  $request_method;\nfastcgi_param CONTENT_TYPE    $content_type;\nfastcgi_param CONTENT_LENGTH  $content_length;\n\n \n\n\nIf PHP was built with the --enable-force-cgi-redirect\nconfiguration parameter, the REDIRECT_STATUS parameter\nshould also be passed with the value “200”:\n\nfastcgi_param REDIRECT_STATUS 200;\n\n \n\n\nIf the directive is specified with if_not_empty (1.1.11) then\nsuch a parameter will be passed to the server only if its value is not empty:\n\nfastcgi_param HTTPS           $https if_not_empty;\n\n \n"
         },
         {
           "name": "fastcgi_pass",
+          "fieldName": "FastcgiPass",
           "syntax": "fastcgi_pass address;",
           "context": "location, if in location",
           "description": "\nSets the address of a FastCGI server.\nThe address can be specified as a domain name or IP address,\nand a port:\n\nfastcgi_pass localhost:9000;\n\n \nor as a UNIX-domain socket path:\n\nfastcgi_pass unix:/tmp/fastcgi.socket;\n\n \n\n\nIf a domain name resolves to several addresses, all of them will be\nused in a round-robin fashion.\nIn addition, an address can be specified as a\nserver group.\n\n\nParameter value can contain variables.\nIn this case, if an address is specified as a domain name,\nthe name is searched among the described\nserver groups,\nand, if not found, is determined using a\nresolver.\n"
         },
         {
           "name": "fastcgi_pass_header",
+          "fieldName": "FastcgiPassHeader",
           "syntax": "fastcgi_pass_header field;",
           "context": "http, server, location",
           "description": "\nPermits passing otherwise disabled header\nfields from a FastCGI server to a client.\n"
         },
         {
           "name": "fastcgi_pass_request_body",
+          "fieldName": "FastcgiPassRequestBody",
           "syntax": "fastcgi_pass_request_body on | off;",
           "default": "fastcgi_pass_request_body on;",
           "context": "http, server, location",
@@ -969,6 +1075,7 @@
         },
         {
           "name": "fastcgi_pass_request_headers",
+          "fieldName": "FastcgiPassRequestHeaders",
           "syntax": "fastcgi_pass_request_headers on | off;",
           "default": "fastcgi_pass_request_headers on;",
           "context": "http, server, location",
@@ -976,6 +1083,7 @@
         },
         {
           "name": "fastcgi_read_timeout",
+          "fieldName": "FastcgiReadTimeout",
           "syntax": "fastcgi_read_timeout time;",
           "default": "fastcgi_read_timeout 60s;",
           "context": "http, server, location",
@@ -983,6 +1091,7 @@
         },
         {
           "name": "fastcgi_request_buffering",
+          "fieldName": "FastcgiRequestBuffering",
           "syntax": "fastcgi_request_buffering on | off;",
           "default": "fastcgi_request_buffering on;",
           "context": "http, server, location",
@@ -990,6 +1099,7 @@
         },
         {
           "name": "fastcgi_send_lowat",
+          "fieldName": "FastcgiSendLowat",
           "syntax": "fastcgi_send_lowat size;",
           "default": "fastcgi_send_lowat 0;",
           "context": "http, server, location",
@@ -997,6 +1107,7 @@
         },
         {
           "name": "fastcgi_send_timeout",
+          "fieldName": "FastcgiSendTimeout",
           "syntax": "fastcgi_send_timeout time;",
           "default": "fastcgi_send_timeout 60s;",
           "context": "http, server, location",
@@ -1004,6 +1115,7 @@
         },
         {
           "name": "fastcgi_socket_keepalive",
+          "fieldName": "FastcgiSocketKeepalive",
           "syntax": "fastcgi_socket_keepalive on | off;",
           "default": "fastcgi_socket_keepalive off;",
           "context": "http, server, location",
@@ -1011,12 +1123,14 @@
         },
         {
           "name": "fastcgi_split_path_info",
+          "fieldName": "FastcgiSplitPathInfo",
           "syntax": "fastcgi_split_path_info regex;",
           "context": "location",
           "description": "\nDefines a regular expression that captures a value for the\n$fastcgi_path_info variable.\nThe regular expression should have two captures: the first becomes\na value of the $fastcgi_script_name variable, the second\nbecomes a value of the $fastcgi_path_info variable.\nFor example, with these settings\n\nlocation ~ ^(.+\\.php)(.*)$ {\n    fastcgi_split_path_info       ^(.+\\.php)(.*)$;\n    fastcgi_param SCRIPT_FILENAME /path/to/php$fastcgi_script_name;\n    fastcgi_param PATH_INFO       $fastcgi_path_info;\n\n \nand the “/show.php/article/0001” request,\nthe SCRIPT_FILENAME parameter will be equal to\n“/path/to/php/show.php”, and the\nPATH_INFO parameter will be equal to\n“/article/0001”.\n"
         },
         {
           "name": "fastcgi_store",
+          "fieldName": "FastcgiStore",
           "syntax": "fastcgi_store on | off | string;",
           "default": "fastcgi_store off;",
           "context": "http, server, location",
@@ -1024,6 +1138,7 @@
         },
         {
           "name": "fastcgi_store_access",
+          "fieldName": "FastcgiStoreAccess",
           "syntax": "fastcgi_store_access users:permissions ...;",
           "default": "fastcgi_store_access user:rw;",
           "context": "http, server, location",
@@ -1031,6 +1146,7 @@
         },
         {
           "name": "fastcgi_temp_file_write_size",
+          "fieldName": "FastcgiTempFileWriteSize",
           "syntax": "fastcgi_temp_file_write_size size;",
           "default": "fastcgi_temp_file_write_size 8k|16k;",
           "context": "http, server, location",
@@ -1038,6 +1154,7 @@
         },
         {
           "name": "fastcgi_temp_path",
+          "fieldName": "FastcgiTempPath",
           "syntax": "fastcgi_temp_path path [level1 [level2 [level3]]];",
           "default": "fastcgi_temp_path fastcgi_temp;",
           "context": "http, server, location",
@@ -1051,6 +1168,7 @@
       "directives": [
         {
           "name": "geo",
+          "fieldName": "Geo",
           "syntax": "geo [$address] $variable { ... }",
           "context": "http",
           "description": "\nDescribes the dependency of values of the specified variable\non the client IP address.\nBy default, the address is taken from the $remote_addr variable,\nbut it can also be taken from another variable (0.7.27), for example:\n\ngeo $arg_remote_addr $geo {\n    ...;\n}\n\n \n\n\n\n\nSince variables are evaluated only when used, the mere existence\nof even a large number of declared “geo” variables\ndoes not cause any extra costs for request processing.\n\n \n\n\nIf the value of a variable does not represent a valid IP address\nthen the “255.255.255.255” address is used.\n\n\nAddresses are specified either as prefixes in CIDR notation\n(including individual addresses) or as ranges (0.7.23).\n\n\nIPv6 prefixes are supported starting from versions 1.3.10 and 1.2.7.\n\n \n\n\nThe following special parameters are also supported:\n\n\n\ndelete\n\ndeletes the specified network (0.7.23).\n\n\ndefault\n\na value set to the variable if the client address does not\nmatch any of the specified addresses.\nWhen addresses are specified in CIDR notation,\n“0.0.0.0/0” and “::/0”\ncan be used instead of default.\nWhen default is not specified, the default\nvalue will be an empty string.\n\n\ninclude\n\nincludes a file with addresses and values.\nThere can be several inclusions.\n\n\nproxy\n\ndefines trusted addresses (0.8.7, 0.7.63).\nWhen a request comes from a trusted address,\nan address from the “X-Forwarded-For” request\nheader field will be used instead.\nIn contrast to the regular addresses, trusted addresses are\nchecked sequentially.\n\nTrusted IPv6 addresses are supported starting from versions 1.3.0 and 1.2.1.\n\n\n\nproxy_recursive\n\nenables recursive address search (1.3.0, 1.2.1).\nIf recursive search is disabled then instead of the original client\naddress that matches one of the trusted addresses, the last\naddress sent in “X-Forwarded-For” will be used.\nIf recursive search is enabled then instead of the original client\naddress that matches one of the trusted addresses, the last\nnon-trusted address sent in “X-Forwarded-For” will be used.\n\n\nranges\n\nindicates that addresses are specified as ranges (0.7.23).\nThis parameter should be the first.\nTo speed up loading of a geo base, addresses should be put in ascending order.\n\n\n\n \n\n\nExample:\n\ngeo $country {\n    default        ZZ;\n    include        conf/geo.conf;\n    delete         127.0.0.0/16;\n    proxy          192.168.100.0/24;\n    proxy          2001:0db8::/32;\n\n    127.0.0.0/24   US;\n    127.0.0.1/32   RU;\n    10.1.0.0/16    RU;\n    192.168.1.0/24 UK;\n}\n\n \n\n\nThe conf/geo.conf file could contain the following lines:\n\n10.2.0.0/16    RU;\n192.168.2.0/24 RU;\n\n \n\n\nA value of the most specific match is used.\nFor example, for the 127.0.0.1 address the value “RU”\nwill be chosen, not “US”.\n\n\nExample with ranges:\n\ngeo $country {\n    ranges;\n    default                   ZZ;\n    127.0.0.0-127.0.0.0       US;\n    127.0.0.1-127.0.0.1       RU;\n    127.0.0.1-127.0.0.255     US;\n    10.1.0.0-10.1.255.255     RU;\n    192.168.1.0-192.168.1.255 UK;\n}\n\n \n"
@@ -1063,30 +1181,35 @@
       "directives": [
         {
           "name": "geoip_country",
+          "fieldName": "GeoipCountry",
           "syntax": "geoip_country file;",
           "context": "http",
           "description": "\nSpecifies a database used to determine the country\ndepending on the client IP address.\nThe following variables are available when using this database:\n\n\n\n$geoip_country_code\n\ntwo-letter country code, for example,\n“RU”, “US”.\n\n\n$geoip_country_code3\n\n\nthree-letter country code, for example,\n“RUS”, “USA”.\n\n\n$geoip_country_name\n\ncountry name, for example,\n“Russian Federation”, “United States”.\n\n\n\n \n"
         },
         {
           "name": "geoip_city",
+          "fieldName": "GeoipCity",
           "syntax": "geoip_city file;",
           "context": "http",
           "description": "\nSpecifies a database used to determine the country, region, and city\ndepending on the client IP address.\nThe following variables are available when using this database:\n\n\n\n$geoip_area_code\ntelephone area code (US only).\n\nThis variable may contain outdated information since\nthe corresponding database field is deprecated.\n\n\n\n\n$geoip_city_continent_code\ntwo-letter continent code, for example,\n“EU”, “NA”.\n\n\n$geoip_city_country_code\n\n\ntwo-letter country code, for example,\n“RU”, “US”.\n\n\n$geoip_city_country_code3\n\n\nthree-letter country code, for example,\n“RUS”, “USA”.\n\n\n$geoip_city_country_name\n\n\ncountry name, for example,\n“Russian Federation”, “United States”.\n\n\n$geoip_dma_code\n\nDMA region code in US (also known as “metro code”), according to the\ngeotargeting\nin Google AdWords API.\n\n\n$geoip_latitude\nlatitude.\n\n$geoip_longitude\nlongitude.\n\n$geoip_region\n\ntwo-symbol country region code (region, territory, state, province, federal land\nand the like), for example,\n“48”, “DC”.\n\n\n$geoip_region_name\n\ncountry region name (region, territory, state, province, federal land\nand the like), for example,\n“Moscow City”, “District of Columbia”.\n\n\n$geoip_city\n\ncity name, for example,\n“Moscow”, “Washington”.\n\n\n$geoip_postal_code\n\npostal code.\n\n\n\n \n"
         },
         {
           "name": "geoip_org",
+          "fieldName": "GeoipOrg",
           "syntax": "geoip_org file;",
           "context": "http",
           "description": "\nSpecifies a database used to determine the organization\ndepending on the client IP address.\nThe following variable is available when using this database:\n\n\n\n$geoip_org\n\norganization name, for example, “The University of Melbourne”.\n\n\n\n \n"
         },
         {
           "name": "geoip_proxy",
+          "fieldName": "GeoipProxy",
           "syntax": "geoip_proxy address | CIDR;",
           "context": "http",
           "description": "\nDefines trusted addresses.\nWhen a request comes from a trusted address,\nan address from the “X-Forwarded-For” request\nheader field will be used instead.\n"
         },
         {
           "name": "geoip_proxy_recursive",
+          "fieldName": "GeoipProxyRecursive",
           "syntax": "geoip_proxy_recursive on | off;",
           "default": "geoip_proxy_recursive off;",
           "context": "http",
@@ -1100,12 +1223,14 @@
       "directives": [
         {
           "name": "grpc_bind",
+          "fieldName": "GrpcBind",
           "syntax": "grpc_bind address [transparent ] | off;",
           "context": "http, server, location",
           "description": "\nMakes outgoing connections to a gRPC server originate\nfrom the specified local IP address with an optional port.\nParameter value can contain variables.\nThe special value off cancels the effect\nof the grpc_bind directive\ninherited from the previous configuration level, which allows the\nsystem to auto-assign the local IP address and port.\n"
         },
         {
           "name": "grpc_buffer_size",
+          "fieldName": "GrpcBufferSize",
           "syntax": "grpc_buffer_size size;",
           "default": "grpc_buffer_size 4k|8k;",
           "context": "http, server, location",
@@ -1113,6 +1238,7 @@
         },
         {
           "name": "grpc_connect_timeout",
+          "fieldName": "GrpcConnectTimeout",
           "syntax": "grpc_connect_timeout time;",
           "default": "grpc_connect_timeout 60s;",
           "context": "http, server, location",
@@ -1120,18 +1246,21 @@
         },
         {
           "name": "grpc_hide_header",
+          "fieldName": "GrpcHideHeader",
           "syntax": "grpc_hide_header field;",
           "context": "http, server, location",
           "description": "\nBy default,\nnginx does not pass the header fields “Date”,\n“Server”, and\n“X-Accel-...” from the response of a gRPC\nserver to a client.\nThe grpc_hide_header directive sets additional fields\nthat will not be passed.\nIf, on the contrary, the passing of fields needs to be permitted,\nthe grpc_pass_header directive can be used.\n"
         },
         {
           "name": "grpc_ignore_headers",
+          "fieldName": "GrpcIgnoreHeaders",
           "syntax": "grpc_ignore_headers field ...;",
           "context": "http, server, location",
           "description": "\nDisables processing of certain response header fields from the gRPC server.\nThe following fields can be ignored: “X-Accel-Redirect”\nand “X-Accel-Charset”.\n\n\nIf not disabled, processing of these header fields has the following\neffect:\n\n\n\n\n“X-Accel-Redirect” performs an\ninternal\nredirect to the specified URI;\n\n\n\n“X-Accel-Charset” sets the desired\ncharset\nof a response.\n\n\n\n \n"
         },
         {
           "name": "grpc_intercept_errors",
+          "fieldName": "GrpcInterceptErrors",
           "syntax": "grpc_intercept_errors on | off;",
           "default": "grpc_intercept_errors off;",
           "context": "http, server, location",
@@ -1139,6 +1268,7 @@
         },
         {
           "name": "grpc_next_upstream",
+          "fieldName": "GrpcNextUpstream",
           "syntax": "grpc_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;",
           "default": "grpc_next_upstream error timeout;",
           "context": "http, server, location",
@@ -1146,6 +1276,7 @@
         },
         {
           "name": "grpc_next_upstream_timeout",
+          "fieldName": "GrpcNextUpstreamTimeout",
           "syntax": "grpc_next_upstream_timeout time;",
           "default": "grpc_next_upstream_timeout 0;",
           "context": "http, server, location",
@@ -1153,6 +1284,7 @@
         },
         {
           "name": "grpc_next_upstream_tries",
+          "fieldName": "GrpcNextUpstreamTries",
           "syntax": "grpc_next_upstream_tries number;",
           "default": "grpc_next_upstream_tries 0;",
           "context": "http, server, location",
@@ -1160,18 +1292,21 @@
         },
         {
           "name": "grpc_pass",
+          "fieldName": "GrpcPass",
           "syntax": "grpc_pass address;",
           "context": "location, if in location",
           "description": "\nSets the gRPC server address.\nThe address can be specified as a domain name or IP address,\nand a port:\n\ngrpc_pass localhost:9000;\n\n \nor as a UNIX-domain socket path:\n\ngrpc_pass unix:/tmp/grpc.socket;\n\n \nAlternatively, the “grpc://” scheme can be used:\n\ngrpc_pass grpc://127.0.0.1:9000;\n\n \nTo use gRPC over SSL, the “grpcs://” scheme should be used:\n\ngrpc_pass grpcs://127.0.0.1:443;\n\n \n\n\nIf a domain name resolves to several addresses, all of them will be\nused in a round-robin fashion.\nIn addition, an address can be specified as a\nserver group.\n"
         },
         {
           "name": "grpc_pass_header",
+          "fieldName": "GrpcPassHeader",
           "syntax": "grpc_pass_header field;",
           "context": "http, server, location",
           "description": "\nPermits passing otherwise disabled header\nfields from a gRPC server to a client.\n"
         },
         {
           "name": "grpc_read_timeout",
+          "fieldName": "GrpcReadTimeout",
           "syntax": "grpc_read_timeout time;",
           "default": "grpc_read_timeout 60s;",
           "context": "http, server, location",
@@ -1179,6 +1314,7 @@
         },
         {
           "name": "grpc_send_timeout",
+          "fieldName": "GrpcSendTimeout",
           "syntax": "grpc_send_timeout time;",
           "default": "grpc_send_timeout 60s;",
           "context": "http, server, location",
@@ -1186,6 +1322,7 @@
         },
         {
           "name": "grpc_set_header",
+          "fieldName": "GrpcSetHeader",
           "syntax": "grpc_set_header field value;",
           "default": "grpc_set_header Content-Length $content_length;",
           "context": "http, server, location",
@@ -1193,6 +1330,7 @@
         },
         {
           "name": "grpc_socket_keepalive",
+          "fieldName": "GrpcSocketKeepalive",
           "syntax": "grpc_socket_keepalive on | off;",
           "default": "grpc_socket_keepalive off;",
           "context": "http, server, location",
@@ -1200,18 +1338,21 @@
         },
         {
           "name": "grpc_ssl_certificate",
+          "fieldName": "GrpcSslCertificate",
           "syntax": "grpc_ssl_certificate file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with the certificate in the PEM format\nused for authentication to a gRPC SSL server.\n"
         },
         {
           "name": "grpc_ssl_certificate_key",
+          "fieldName": "GrpcSslCertificateKey",
           "syntax": "grpc_ssl_certificate_key file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with the secret key in the PEM format\nused for authentication to a gRPC SSL server.\n\n\nThe value\nengine:name:id\ncan be specified instead of the file,\nwhich loads a secret key with a specified id\nfrom the OpenSSL engine name.\n"
         },
         {
           "name": "grpc_ssl_ciphers",
+          "fieldName": "GrpcSslCiphers",
           "syntax": "grpc_ssl_ciphers ciphers;",
           "default": "grpc_ssl_ciphers DEFAULT;",
           "context": "http, server, location",
@@ -1219,12 +1360,14 @@
         },
         {
           "name": "grpc_ssl_crl",
+          "fieldName": "GrpcSslCrl",
           "syntax": "grpc_ssl_crl file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with revoked certificates (CRL)\nin the PEM format used to verify\nthe certificate of the gRPC SSL server.\n"
         },
         {
           "name": "grpc_ssl_name",
+          "fieldName": "GrpcSslName",
           "syntax": "grpc_ssl_name name;",
           "default": "grpc_ssl_name host from grpc_pass;",
           "context": "http, server, location",
@@ -1232,12 +1375,14 @@
         },
         {
           "name": "grpc_ssl_password_file",
+          "fieldName": "GrpcSslPasswordFile",
           "syntax": "grpc_ssl_password_file file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with passphrases for\nsecret keys\nwhere each passphrase is specified on a separate line.\nPassphrases are tried in turn when loading the key.\n"
         },
         {
           "name": "grpc_ssl_protocols",
+          "fieldName": "GrpcSslProtocols",
           "syntax": "grpc_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];",
           "default": "grpc_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;",
           "context": "http, server, location",
@@ -1245,6 +1390,7 @@
         },
         {
           "name": "grpc_ssl_server_name",
+          "fieldName": "GrpcSslServerName",
           "syntax": "grpc_ssl_server_name on | off;",
           "default": "grpc_ssl_server_name off;",
           "context": "http, server, location",
@@ -1252,6 +1398,7 @@
         },
         {
           "name": "grpc_ssl_session_reuse",
+          "fieldName": "GrpcSslSessionReuse",
           "syntax": "grpc_ssl_session_reuse on | off;",
           "default": "grpc_ssl_session_reuse on;",
           "context": "http, server, location",
@@ -1259,12 +1406,14 @@
         },
         {
           "name": "grpc_ssl_trusted_certificate",
+          "fieldName": "GrpcSslTrustedCertificate",
           "syntax": "grpc_ssl_trusted_certificate file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify\nthe certificate of the gRPC SSL server.\n"
         },
         {
           "name": "grpc_ssl_verify",
+          "fieldName": "GrpcSslVerify",
           "syntax": "grpc_ssl_verify on | off;",
           "default": "grpc_ssl_verify off;",
           "context": "http, server, location",
@@ -1272,6 +1421,7 @@
         },
         {
           "name": "grpc_ssl_verify_depth",
+          "fieldName": "GrpcSslVerifyDepth",
           "syntax": "grpc_ssl_verify_depth number;",
           "default": "grpc_ssl_verify_depth 1;",
           "context": "http, server, location",
@@ -1285,6 +1435,7 @@
       "directives": [
         {
           "name": "gunzip",
+          "fieldName": "Gunzip",
           "syntax": "gunzip on | off;",
           "default": "gunzip off;",
           "context": "http, server, location",
@@ -1292,6 +1443,7 @@
         },
         {
           "name": "gunzip_buffers",
+          "fieldName": "GunzipBuffers",
           "syntax": "gunzip_buffers number size;",
           "default": "gunzip_buffers 32 4k|16 8k;",
           "context": "http, server, location",
@@ -1305,6 +1457,7 @@
       "directives": [
         {
           "name": "gzip",
+          "fieldName": "Gzip",
           "syntax": "gzip on | off;",
           "default": "gzip off;",
           "context": "http, server, location, if in location",
@@ -1312,6 +1465,7 @@
         },
         {
           "name": "gzip_buffers",
+          "fieldName": "GzipBuffers",
           "syntax": "gzip_buffers number size;",
           "default": "gzip_buffers 32 4k|16 8k;",
           "context": "http, server, location",
@@ -1319,6 +1473,7 @@
         },
         {
           "name": "gzip_comp_level",
+          "fieldName": "GzipCompLevel",
           "syntax": "gzip_comp_level level;",
           "default": "gzip_comp_level 1;",
           "context": "http, server, location",
@@ -1326,12 +1481,14 @@
         },
         {
           "name": "gzip_disable",
+          "fieldName": "GzipDisable",
           "syntax": "gzip_disable regex ...;",
           "context": "http, server, location",
           "description": "\nDisables gzipping of responses for requests with\n“User-Agent” header fields matching\nany of the specified regular expressions.\n\n\nThe special mask “msie6” (0.7.12) corresponds to\nthe regular expression “MSIE [4-6]\\.”, but works faster.\nStarting from version 0.8.11, “MSIE 6.0; ... SV1”\nis excluded from this mask.\n"
         },
         {
           "name": "gzip_http_version",
+          "fieldName": "GzipHttpVersion",
           "syntax": "gzip_http_version 1.0 | 1.1;",
           "default": "gzip_http_version 1.1;",
           "context": "http, server, location",
@@ -1339,6 +1496,7 @@
         },
         {
           "name": "gzip_min_length",
+          "fieldName": "GzipMinLength",
           "syntax": "gzip_min_length length;",
           "default": "gzip_min_length 20;",
           "context": "http, server, location",
@@ -1346,6 +1504,7 @@
         },
         {
           "name": "gzip_proxied",
+          "fieldName": "GzipProxied",
           "syntax": "gzip_proxied off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...;",
           "default": "gzip_proxied off;",
           "context": "http, server, location",
@@ -1353,6 +1512,7 @@
         },
         {
           "name": "gzip_types",
+          "fieldName": "GzipTypes",
           "syntax": "gzip_types mime-type ...;",
           "default": "gzip_types text/html;",
           "context": "http, server, location",
@@ -1360,6 +1520,7 @@
         },
         {
           "name": "gzip_vary",
+          "fieldName": "GzipVary",
           "syntax": "gzip_vary on | off;",
           "default": "gzip_vary off;",
           "context": "http, server, location",
@@ -1373,6 +1534,7 @@
       "directives": [
         {
           "name": "gzip_static",
+          "fieldName": "GzipStatic",
           "syntax": "gzip_static on | off | always;",
           "default": "gzip_static off;",
           "context": "http, server, location",
@@ -1386,18 +1548,21 @@
       "directives": [
         {
           "name": "add_header",
+          "fieldName": "AddHeader",
           "syntax": "add_header name value [always];",
           "context": "http, server, location, if in location",
           "description": "\nAdds the specified field to a response header provided that\nthe response code equals 200, 201 (1.3.10), 204, 206, 301, 302, 303, 304,\n307 (1.1.16, 1.0.13), or 308 (1.13.0).\nParameter value can contain variables.\n\n\nThere could be several add_header directives.\nThese directives are inherited from the previous level if and\nonly if there are no\nadd_header\ndirectives defined on the current level.\n\n\nIf the always parameter is specified (1.7.5),\nthe header field will be added regardless of the response code.\n"
         },
         {
           "name": "add_trailer",
+          "fieldName": "AddTrailer",
           "syntax": "add_trailer name value [always];",
           "context": "http, server, location, if in location",
           "description": "\nAdds the specified field to the end of a response provided that\nthe response code equals 200, 201, 206, 301, 302, 303, 307, or 308.\nParameter value can contain variables.\n\n\nThere could be several add_trailer directives.\nThese directives are inherited from the previous level if and\nonly if there are no\nadd_trailer\ndirectives defined on the current level.\n\n\nIf the always parameter is specified\nthe specified field will be added regardless of the response code.\n"
         },
         {
           "name": "expires",
+          "fieldName": "Expires",
           "syntax": "expires [modified] time;expires epoch | max | off;",
           "default": "expires off;",
           "context": "http, server, location, if in location",
@@ -1411,6 +1576,7 @@
       "directives": [
         {
           "name": "image_filter",
+          "fieldName": "ImageFilter",
           "syntax": "image_filter off;image_filter test;image_filter size;image_filter rotate 90 | 180 | 270;image_filter resize width height;image_filter crop width height;",
           "default": "image_filter off;",
           "context": "location",
@@ -1418,6 +1584,7 @@
         },
         {
           "name": "image_filter_buffer",
+          "fieldName": "ImageFilterBuffer",
           "syntax": "image_filter_buffer size;",
           "default": "image_filter_buffer 1M;",
           "context": "http, server, location",
@@ -1425,6 +1592,7 @@
         },
         {
           "name": "image_filter_interlace",
+          "fieldName": "ImageFilterInterlace",
           "syntax": "image_filter_interlace on | off;",
           "default": "image_filter_interlace off;",
           "context": "http, server, location",
@@ -1432,6 +1600,7 @@
         },
         {
           "name": "image_filter_jpeg_quality",
+          "fieldName": "ImageFilterJpegQuality",
           "syntax": "image_filter_jpeg_quality quality;",
           "default": "image_filter_jpeg_quality 75;",
           "context": "http, server, location",
@@ -1439,6 +1608,7 @@
         },
         {
           "name": "image_filter_sharpen",
+          "fieldName": "ImageFilterSharpen",
           "syntax": "image_filter_sharpen percent;",
           "default": "image_filter_sharpen 0;",
           "context": "http, server, location",
@@ -1446,6 +1616,7 @@
         },
         {
           "name": "image_filter_transparency",
+          "fieldName": "ImageFilterTransparency",
           "syntax": "image_filter_transparency on|off;",
           "default": "image_filter_transparency on;",
           "context": "http, server, location",
@@ -1453,6 +1624,7 @@
         },
         {
           "name": "image_filter_webp_quality",
+          "fieldName": "ImageFilterWebpQuality",
           "syntax": "image_filter_webp_quality quality;",
           "default": "image_filter_webp_quality 80;",
           "context": "http, server, location",
@@ -1466,6 +1638,7 @@
       "directives": [
         {
           "name": "index",
+          "fieldName": "Index",
           "syntax": "index file ...;",
           "default": "index index.html;",
           "context": "http, server, location",
@@ -1479,12 +1652,14 @@
       "directives": [
         {
           "name": "limit_conn",
+          "fieldName": "LimitConn",
           "syntax": "limit_conn zone number;",
           "context": "http, server, location",
           "description": "\nSets the shared memory zone\nand the maximum allowed number of connections for a given key value.\nWhen this limit is exceeded, the server will return the\nerror\nin reply to a request.\nFor example, the directives\n\nlimit_conn_zone $binary_remote_addr zone=addr:10m;\n\nserver {\n    location /download/ {\n        limit_conn addr 1;\n    }\n\n \nallow only one connection per an IP address at a time.\n\n\nIn HTTP/2 and SPDY, each concurrent request is considered a separate connection.\n\n \n\n\nThere could be several limit_conn directives.\nFor example, the following configuration will limit the number\nof connections to the server per a client IP and, at the same time,\nthe total number of connections to the virtual server:\n\nlimit_conn_zone $binary_remote_addr zone=perip:10m;\nlimit_conn_zone $server_name zone=perserver:10m;\n\nserver {\n    ...\n    limit_conn perip 10;\n    limit_conn perserver 100;\n}\n\n \n\n\n\nThese directives are inherited from the previous level if and\nonly if there are no\nlimit_conn\ndirectives on the current level.\n"
         },
         {
           "name": "limit_conn_log_level",
+          "fieldName": "LimitConnLogLevel",
           "syntax": "limit_conn_log_level info | notice | warn | error;",
           "default": "limit_conn_log_level error;",
           "context": "http, server, location",
@@ -1492,6 +1667,7 @@
         },
         {
           "name": "limit_conn_status",
+          "fieldName": "LimitConnStatus",
           "syntax": "limit_conn_status code;",
           "default": "limit_conn_status 503;",
           "context": "http, server, location",
@@ -1499,12 +1675,14 @@
         },
         {
           "name": "limit_conn_zone",
+          "fieldName": "LimitConnZone",
           "syntax": "limit_conn_zone key zone=name:size;",
           "context": "http",
           "description": "\nSets parameters for a shared memory zone\nthat will keep states for various keys.\nIn particular, the state includes the current number of connections.\nThe key can contain text, variables, and their combination.\nRequests with an empty key value are not accounted.\n\n\nPrior to version 1.7.6, a key could contain exactly one variable.\n\n \nUsage example:\n\nlimit_conn_zone $binary_remote_addr zone=addr:10m;\n\n \nHere, a client IP address serves as a key.\nNote that instead of $remote_addr, the\n$binary_remote_addr variable is used here.\nThe $remote_addr variable’s size can\nvary from 7 to 15 bytes.\nThe stored state occupies either\n32 or 64 bytes of memory on 32-bit platforms and always 64\nbytes on 64-bit platforms.\nThe $binary_remote_addr variable’s size\nis always 4 bytes for IPv4 addresses or 16 bytes for IPv6 addresses.\nThe stored state always occupies 32 or 64 bytes\non 32-bit platforms and 64 bytes on 64-bit platforms.\nOne megabyte zone can keep about 32 thousand 32-byte states\nor about 16 thousand 64-byte states.\nIf the zone storage is exhausted, the server will return the\nerror\nto all further requests.\n"
         },
         {
           "name": "limit_zone",
+          "fieldName": "LimitZone",
           "syntax": "limit_zone name $variable size;",
           "context": "http",
           "description": "\nThis directive was made obsolete in version 1.1.8\nand was removed in version 1.7.6.\nAn equivalent limit_conn_zone directive\nwith a changed syntax should be used instead:\n\n\nlimit_conn_zone\n$variable\nzone=name:size;\n\n \n"
@@ -1517,12 +1695,14 @@
       "directives": [
         {
           "name": "limit_req",
+          "fieldName": "LimitReq",
           "syntax": "limit_req zone=name [burst=number] [nodelay | delay=number];",
           "context": "http, server, location",
           "description": "\nSets the shared memory zone\nand the maximum burst size of requests.\nIf the requests rate exceeds the rate configured for a zone,\ntheir processing is delayed such that requests are processed\nat a defined rate.\nExcessive requests are delayed until their number exceeds the\nmaximum burst size\nin which case the request is terminated with an\nerror.\nBy default, the maximum burst size is equal to zero.\nFor example, the directives\n\nlimit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;\n\nserver {\n    location /search/ {\n        limit_req zone=one burst=5;\n    }\n\n \nallow not more than 1 request per second at an average,\nwith bursts not exceeding 5 requests.\n\n\nIf delaying of excessive requests while requests are being limited is not\ndesired, the parameter nodelay should be used:\n\nlimit_req zone=one burst=5 nodelay;\n\n \n"
         },
         {
           "name": "limit_req_dry_run",
+          "fieldName": "LimitReqDryRun",
           "syntax": "limit_req_dry_run on | off;",
           "default": "limit_req_dry_run on;",
           "context": "http, server, location",
@@ -1530,6 +1710,7 @@
         },
         {
           "name": "limit_req_log_level",
+          "fieldName": "LimitReqLogLevel",
           "syntax": "limit_req_log_level info | notice | warn | error;",
           "default": "limit_req_log_level error;",
           "context": "http, server, location",
@@ -1537,6 +1718,7 @@
         },
         {
           "name": "limit_req_status",
+          "fieldName": "LimitReqStatus",
           "syntax": "limit_req_status code;",
           "default": "limit_req_status 503;",
           "context": "http, server, location",
@@ -1544,6 +1726,7 @@
         },
         {
           "name": "limit_req_zone",
+          "fieldName": "LimitReqZone",
           "syntax": "limit_req_zone key zone=name:size rate=rate [sync];",
           "context": "http",
           "description": "\nSets parameters for a shared memory zone\nthat will keep states for various keys.\nIn particular, the state stores the current number of excessive requests.\nThe key can contain text, variables, and their combination.\nRequests with an empty key value are not accounted.\n\n\nPrior to version 1.7.6, a key could contain exactly one variable.\n\n \nUsage example:\n\nlimit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;\n\n \n\n\nHere, the states are kept in a 10 megabyte zone “one”, and an\naverage request processing rate for this zone cannot exceed\n1 request per second.\n\n\nA client IP address serves as a key.\nNote that instead of $remote_addr, the\n$binary_remote_addr variable is used here.\nThe $binary_remote_addr variable’s size\nis always 4 bytes for IPv4 addresses or 16 bytes for IPv6 addresses.\nThe stored state always occupies\n64 bytes on 32-bit platforms and 128 bytes on 64-bit platforms.\nOne megabyte zone can keep about 16 thousand 64-byte states\nor about 8 thousand 128-byte states.\n\n\nIf the zone storage is exhausted, the least recently used state is removed.\nEven if after that a new state cannot be created, the request is terminated with\nan error.\n\n\nThe rate is specified in requests per second (r/s).\nIf a rate of less than one request per second is desired,\nit is specified in request per minute (r/m).\nFor example, half-request per second is 30r/m.\n"
@@ -1556,6 +1739,7 @@
       "directives": [
         {
           "name": "access_log",
+          "fieldName": "AccessLog",
           "syntax": "access_log path [format [buffer=size] [gzip[=level]] [flush=time] [if=condition]];access_log off;",
           "default": "access_log logs/access.log combined;",
           "context": "http, server, location, if in location, limit_except",
@@ -1563,6 +1747,7 @@
         },
         {
           "name": "log_format",
+          "fieldName": "LogFormat",
           "syntax": "log_format name [escape=default|json|none] string ...;",
           "default": "log_format combined \"...\";",
           "context": "http",
@@ -1570,6 +1755,7 @@
         },
         {
           "name": "open_log_file_cache",
+          "fieldName": "OpenLogFileCache",
           "syntax": "open_log_file_cache max=N [inactive=time] [min_uses=N] [valid=time];open_log_file_cache off;",
           "default": "open_log_file_cache off;",
           "context": "http, server, location",
@@ -1583,12 +1769,14 @@
       "directives": [
         {
           "name": "map",
+          "fieldName": "Map",
           "syntax": "map string $variable { ... }",
           "context": "http",
           "description": "\nCreates a new variable whose value\ndepends on values of one or more of the source variables\nspecified in the first parameter.\n\n\nBefore version 0.9.0 only a single variable could be\nspecified in the first parameter.\n\n \n\n\n\n\nSince variables are evaluated only when they are used, the mere declaration\neven of a large number of “map” variables\ndoes not add any extra costs to request processing.\n\n \n\n\nParameters inside the map block specify a mapping\nbetween source and resulting values.\n\n\nSource values are specified as strings or regular expressions (0.9.6).\n\n\nStrings are matched ignoring the case.\n\n\nA regular expression should either start from the “~”\nsymbol for a case-sensitive matching, or from the “~*”\nsymbols (1.0.4) for case-insensitive matching.\nA regular expression can contain named and positional captures\nthat can later be used in other directives along with the\nresulting variable.\n\n\nIf a source value matches one of the names of special parameters\ndescribed below, it should be prefixed with the “\\” symbol.\n\n\nThe resulting value can contain text,\nvariable (0.9.0), and their combination (1.11.0).\n\n\nThe following special parameters are also supported:\n\n\ndefault value\n\nsets the resulting value if the source value matches none\nof the specified variants.\nWhen default is not specified, the default\nresulting value will be an empty string.\n\n\nhostnames\n\nindicates that source values can be hostnames with a prefix or suffix mask:\n*.example.com 1;\nexample.*     1;\n\nThe following two records\nexample.com   1;\n*.example.com 1;\n\ncan be combined:\n.example.com  1;\n\nThis parameter should be specified before the list of values.\n\n\ninclude file\n\nincludes a file with values.\nThere can be several inclusions.\n\n\nvolatile\n\nindicates that the variable is not cacheable (1.11.7).\n\n\n\n \n\n\nIf the source value matches more than one of the specified variants,\ne.g. both a mask and a regular expression match, the first matching\nvariant will be chosen, in the following order of priority:\n\n\n\n\nstring value without a mask\n\n\n\nlongest string value with a prefix mask,\ne.g. “*.example.com”\n\n\n\nlongest string value with a suffix mask,\ne.g. “mail.*”\n\n\n\nfirst matching regular expression\n(in order of appearance in a configuration file)\n\n\n\ndefault value\n\n\n\n \n"
         },
         {
           "name": "map_hash_bucket_size",
+          "fieldName": "MapHashBucketSize",
           "syntax": "map_hash_bucket_size size;",
           "default": "map_hash_bucket_size 32|64|128;",
           "context": "http",
@@ -1596,6 +1784,7 @@
         },
         {
           "name": "map_hash_max_size",
+          "fieldName": "MapHashMaxSize",
           "syntax": "map_hash_max_size size;",
           "default": "map_hash_max_size 2048;",
           "context": "http",
@@ -1609,6 +1798,7 @@
       "directives": [
         {
           "name": "mirror",
+          "fieldName": "Mirror",
           "syntax": "mirror uri | off;",
           "default": "mirror off;",
           "context": "http, server, location",
@@ -1616,6 +1806,7 @@
         },
         {
           "name": "mirror_request_body",
+          "fieldName": "MirrorRequestBody",
           "syntax": "mirror_request_body on | off;",
           "default": "mirror_request_body on;",
           "context": "http, server, location",
@@ -1629,12 +1820,14 @@
       "directives": [
         {
           "name": "proxy_bind",
+          "fieldName": "ProxyBind",
           "syntax": "proxy_bind address [transparent] | off;",
           "context": "http, server, location",
           "description": "\nMakes outgoing connections to a proxied server originate\nfrom the specified local IP address with an optional port (1.11.2).\nParameter value can contain variables (1.3.12).\nThe special value off (1.3.12) cancels the effect\nof the proxy_bind directive\ninherited from the previous configuration level, which allows the\nsystem to auto-assign the local IP address and port.\n"
         },
         {
           "name": "proxy_buffer_size",
+          "fieldName": "ProxyBufferSize",
           "syntax": "proxy_buffer_size size;",
           "default": "proxy_buffer_size 4k|8k;",
           "context": "http, server, location",
@@ -1642,6 +1835,7 @@
         },
         {
           "name": "proxy_buffering",
+          "fieldName": "ProxyBuffering",
           "syntax": "proxy_buffering on | off;",
           "default": "proxy_buffering on;",
           "context": "http, server, location",
@@ -1649,6 +1843,7 @@
         },
         {
           "name": "proxy_buffers",
+          "fieldName": "ProxyBuffers",
           "syntax": "proxy_buffers number size;",
           "default": "proxy_buffers 8 4k|8k;",
           "context": "http, server, location",
@@ -1656,6 +1851,7 @@
         },
         {
           "name": "proxy_busy_buffers_size",
+          "fieldName": "ProxyBusyBuffersSize",
           "syntax": "proxy_busy_buffers_size size;",
           "default": "proxy_busy_buffers_size 8k|16k;",
           "context": "http, server, location",
@@ -1663,6 +1859,7 @@
         },
         {
           "name": "proxy_cache",
+          "fieldName": "ProxyCache",
           "syntax": "proxy_cache zone | off;",
           "default": "proxy_cache off;",
           "context": "http, server, location",
@@ -1670,6 +1867,7 @@
         },
         {
           "name": "proxy_cache_background_update",
+          "fieldName": "ProxyCacheBackgroundUpdate",
           "syntax": "proxy_cache_background_update on | off;",
           "default": "proxy_cache_background_update off;",
           "context": "http, server, location",
@@ -1677,12 +1875,14 @@
         },
         {
           "name": "proxy_cache_bypass",
+          "fieldName": "ProxyCacheBypass",
           "syntax": "proxy_cache_bypass string ...;",
           "context": "http, server, location",
           "description": "\nDefines conditions under which the response will not be taken from a cache.\nIf at least one value of the string parameters is not empty and is not\nequal to “0” then the response will not be taken from the cache:\n\nproxy_cache_bypass $cookie_nocache $arg_nocache$arg_comment;\nproxy_cache_bypass $http_pragma    $http_authorization;\n\n \nCan be used along with the proxy_no_cache directive.\n"
         },
         {
           "name": "proxy_cache_convert_head",
+          "fieldName": "ProxyCacheConvertHead",
           "syntax": "proxy_cache_convert_head on | off;",
           "default": "proxy_cache_convert_head on;",
           "context": "http, server, location",
@@ -1690,6 +1890,7 @@
         },
         {
           "name": "proxy_cache_key",
+          "fieldName": "ProxyCacheKey",
           "syntax": "proxy_cache_key string;",
           "default": "proxy_cache_key $scheme$proxy_host$request_uri;",
           "context": "http, server, location",
@@ -1697,6 +1898,7 @@
         },
         {
           "name": "proxy_cache_lock",
+          "fieldName": "ProxyCacheLock",
           "syntax": "proxy_cache_lock on | off;",
           "default": "proxy_cache_lock off;",
           "context": "http, server, location",
@@ -1704,6 +1906,7 @@
         },
         {
           "name": "proxy_cache_lock_age",
+          "fieldName": "ProxyCacheLockAge",
           "syntax": "proxy_cache_lock_age time;",
           "default": "proxy_cache_lock_age 5s;",
           "context": "http, server, location",
@@ -1711,6 +1914,7 @@
         },
         {
           "name": "proxy_cache_lock_timeout",
+          "fieldName": "ProxyCacheLockTimeout",
           "syntax": "proxy_cache_lock_timeout time;",
           "default": "proxy_cache_lock_timeout 5s;",
           "context": "http, server, location",
@@ -1718,12 +1922,14 @@
         },
         {
           "name": "proxy_cache_max_range_offset",
+          "fieldName": "ProxyCacheMaxRangeOffset",
           "syntax": "proxy_cache_max_range_offset number;",
           "context": "http, server, location",
           "description": "\nSets an offset in bytes for byte-range requests.\nIf the range is beyond the offset,\nthe range request will be passed to the proxied server\nand the response will not be cached.\n"
         },
         {
           "name": "proxy_cache_methods",
+          "fieldName": "ProxyCacheMethods",
           "syntax": "proxy_cache_methods GET | HEAD | POST ...;",
           "default": "proxy_cache_methods GET HEAD;",
           "context": "http, server, location",
@@ -1731,6 +1937,7 @@
         },
         {
           "name": "proxy_cache_min_uses",
+          "fieldName": "ProxyCacheMinUses",
           "syntax": "proxy_cache_min_uses number;",
           "default": "proxy_cache_min_uses 1;",
           "context": "http, server, location",
@@ -1738,6 +1945,7 @@
         },
         {
           "name": "proxy_cache_revalidate",
+          "fieldName": "ProxyCacheRevalidate",
           "syntax": "proxy_cache_revalidate on | off;",
           "default": "proxy_cache_revalidate off;",
           "context": "http, server, location",
@@ -1745,6 +1953,7 @@
         },
         {
           "name": "proxy_cache_use_stale",
+          "fieldName": "ProxyCacheUseStale",
           "syntax": "proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...;",
           "default": "proxy_cache_use_stale off;",
           "context": "http, server, location",
@@ -1752,12 +1961,14 @@
         },
         {
           "name": "proxy_cache_valid",
+          "fieldName": "ProxyCacheValid",
           "syntax": "proxy_cache_valid [code ...] time;",
           "context": "http, server, location",
           "description": "\nSets caching time for different response codes.\nFor example, the following directives\n\nproxy_cache_valid 200 302 10m;\nproxy_cache_valid 404      1m;\n\n \nset 10 minutes of caching for responses with codes 200 and 302\nand 1 minute for responses with code 404.\n\n\nIf only caching time is specified\n\nproxy_cache_valid 5m;\n\n \nthen only 200, 301, and 302 responses are cached.\n\n\nIn addition, the any parameter can be specified\nto cache any responses:\n\nproxy_cache_valid 200 302 10m;\nproxy_cache_valid 301      1h;\nproxy_cache_valid any      1m;\n\n \n\n\nParameters of caching can also be set directly\nin the response header.\nThis has higher priority than setting of caching time using the directive.\n\n\n\n\nThe “X-Accel-Expires” header field sets caching time of a\nresponse in seconds.\nThe zero value disables caching for a response.\nIf the value starts with the @ prefix, it sets an absolute\ntime in seconds since Epoch, up to which the response may be cached.\n\n\n\nIf the header does not include the “X-Accel-Expires” field,\nparameters of caching may be set in the header fields\n“Expires” or “Cache-Control”.\n\n\n\nIf the header includes the “Set-Cookie” field, such a\nresponse will not be cached.\n\n\n\nIf the header includes the “Vary” field\nwith the special value “*”, such a\nresponse will not be cached (1.7.7).\nIf the header includes the “Vary” field\nwith another value, such a response will be cached\ntaking into account the corresponding request header fields (1.7.7).\n\n\n\n \nProcessing of one or more of these response header fields can be disabled\nusing the proxy_ignore_headers directive.\n"
         },
         {
           "name": "proxy_connect_timeout",
+          "fieldName": "ProxyConnectTimeout",
           "syntax": "proxy_connect_timeout time;",
           "default": "proxy_connect_timeout 60s;",
           "context": "http, server, location",
@@ -1765,6 +1976,7 @@
         },
         {
           "name": "proxy_cookie_domain",
+          "fieldName": "ProxyCookieDomain",
           "syntax": "proxy_cookie_domain off;proxy_cookie_domain domain replacement;",
           "default": "proxy_cookie_domain off;",
           "context": "http, server, location",
@@ -1772,6 +1984,7 @@
         },
         {
           "name": "proxy_cookie_path",
+          "fieldName": "ProxyCookiePath",
           "syntax": "proxy_cookie_path off;proxy_cookie_path path replacement;",
           "default": "proxy_cookie_path off;",
           "context": "http, server, location",
@@ -1779,6 +1992,7 @@
         },
         {
           "name": "proxy_force_ranges",
+          "fieldName": "ProxyForceRanges",
           "syntax": "proxy_force_ranges on | off;",
           "default": "proxy_force_ranges off;",
           "context": "http, server, location",
@@ -1786,6 +2000,7 @@
         },
         {
           "name": "proxy_headers_hash_bucket_size",
+          "fieldName": "ProxyHeadersHashBucketSize",
           "syntax": "proxy_headers_hash_bucket_size size;",
           "default": "proxy_headers_hash_bucket_size 64;",
           "context": "http, server, location",
@@ -1793,6 +2008,7 @@
         },
         {
           "name": "proxy_headers_hash_max_size",
+          "fieldName": "ProxyHeadersHashMaxSize",
           "syntax": "proxy_headers_hash_max_size size;",
           "default": "proxy_headers_hash_max_size 512;",
           "context": "http, server, location",
@@ -1800,12 +2016,14 @@
         },
         {
           "name": "proxy_hide_header",
+          "fieldName": "ProxyHideHeader",
           "syntax": "proxy_hide_header field;",
           "context": "http, server, location",
           "description": "\nBy default,\nnginx does not pass the header fields “Date”,\n“Server”, “X-Pad”, and\n“X-Accel-...” from the response of a proxied\nserver to a client.\nThe proxy_hide_header directive sets additional fields\nthat will not be passed.\nIf, on the contrary, the passing of fields needs to be permitted,\nthe proxy_pass_header directive can be used.\n"
         },
         {
           "name": "proxy_http_version",
+          "fieldName": "ProxyHttpVersion",
           "syntax": "proxy_http_version 1.0 | 1.1;",
           "default": "proxy_http_version 1.0;",
           "context": "http, server, location",
@@ -1813,6 +2031,7 @@
         },
         {
           "name": "proxy_ignore_client_abort",
+          "fieldName": "ProxyIgnoreClientAbort",
           "syntax": "proxy_ignore_client_abort on | off;",
           "default": "proxy_ignore_client_abort off;",
           "context": "http, server, location",
@@ -1820,12 +2039,14 @@
         },
         {
           "name": "proxy_ignore_headers",
+          "fieldName": "ProxyIgnoreHeaders",
           "syntax": "proxy_ignore_headers field ...;",
           "context": "http, server, location",
           "description": "\nDisables processing of certain response header fields from the proxied server.\nThe following fields can be ignored: “X-Accel-Redirect”,\n“X-Accel-Expires”, “X-Accel-Limit-Rate” (1.1.6),\n“X-Accel-Buffering” (1.1.6),\n“X-Accel-Charset” (1.1.6), “Expires”,\n“Cache-Control”, “Set-Cookie” (0.8.44),\nand “Vary” (1.7.7).\n\n\nIf not disabled, processing of these header fields has the following\neffect:\n\n\n\n\n“X-Accel-Expires”, “Expires”,\n“Cache-Control”, “Set-Cookie”,\nand “Vary”\nset the parameters of response caching;\n\n\n\n“X-Accel-Redirect” performs an\ninternal\nredirect to the specified URI;\n\n\n\n“X-Accel-Limit-Rate” sets the\nrate\nlimit for transmission of a response to a client;\n\n\n\n“X-Accel-Buffering” enables or disables\nbuffering of a response;\n\n\n\n“X-Accel-Charset” sets the desired\ncharset\nof a response.\n\n\n\n \n"
         },
         {
           "name": "proxy_intercept_errors",
+          "fieldName": "ProxyInterceptErrors",
           "syntax": "proxy_intercept_errors on | off;",
           "default": "proxy_intercept_errors off;",
           "context": "http, server, location",
@@ -1833,6 +2054,7 @@
         },
         {
           "name": "proxy_limit_rate",
+          "fieldName": "ProxyLimitRate",
           "syntax": "proxy_limit_rate rate;",
           "default": "proxy_limit_rate 0;",
           "context": "http, server, location",
@@ -1840,6 +2062,7 @@
         },
         {
           "name": "proxy_max_temp_file_size",
+          "fieldName": "ProxyMaxTempFileSize",
           "syntax": "proxy_max_temp_file_size size;",
           "default": "proxy_max_temp_file_size 1024m;",
           "context": "http, server, location",
@@ -1847,12 +2070,14 @@
         },
         {
           "name": "proxy_method",
+          "fieldName": "ProxyMethod",
           "syntax": "proxy_method method;",
           "context": "http, server, location",
           "description": "\nSpecifies the HTTP method to use in requests forwarded\nto the proxied server instead of the method from the client request.\nParameter value can contain variables (1.11.6).\n"
         },
         {
           "name": "proxy_next_upstream",
+          "fieldName": "ProxyNextUpstream",
           "syntax": "proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;",
           "default": "proxy_next_upstream error timeout;",
           "context": "http, server, location",
@@ -1860,6 +2085,7 @@
         },
         {
           "name": "proxy_next_upstream_timeout",
+          "fieldName": "ProxyNextUpstreamTimeout",
           "syntax": "proxy_next_upstream_timeout time;",
           "default": "proxy_next_upstream_timeout 0;",
           "context": "http, server, location",
@@ -1867,6 +2093,7 @@
         },
         {
           "name": "proxy_next_upstream_tries",
+          "fieldName": "ProxyNextUpstreamTries",
           "syntax": "proxy_next_upstream_tries number;",
           "default": "proxy_next_upstream_tries 0;",
           "context": "http, server, location",
@@ -1874,24 +2101,28 @@
         },
         {
           "name": "proxy_no_cache",
+          "fieldName": "ProxyNoCache",
           "syntax": "proxy_no_cache string ...;",
           "context": "http, server, location",
           "description": "\nDefines conditions under which the response will not be saved to a cache.\nIf at least one value of the string parameters is not empty and is not\nequal to “0” then the response will not be saved:\n\nproxy_no_cache $cookie_nocache $arg_nocache$arg_comment;\nproxy_no_cache $http_pragma    $http_authorization;\n\n \nCan be used along with the proxy_cache_bypass directive.\n"
         },
         {
           "name": "proxy_pass",
+          "fieldName": "ProxyPass",
           "syntax": "proxy_pass URL;",
           "context": "location, if in location, limit_except",
           "description": "\nSets the protocol and address of a proxied server and an optional URI\nto which a location should be mapped.\nAs a protocol, “http” or “https”\ncan be specified.\nThe address can be specified as a domain name or IP address,\nand an optional port:\n\nproxy_pass http://localhost:8000/uri/;\n\n \nor as a UNIX-domain socket path specified after the word\n“unix” and enclosed in colons:\n\nproxy_pass http://unix:/tmp/backend.socket:/uri/;\n\n \n\n\nIf a domain name resolves to several addresses, all of them will be\nused in a round-robin fashion.\nIn addition, an address can be specified as a\nserver group.\n\n\nParameter value can contain variables.\nIn this case, if an address is specified as a domain name,\nthe name is searched among the described server groups,\nand, if not found, is determined using a\nresolver.\n\n\nA request URI is passed to the server as follows:\n\n\n\n\nIf the proxy_pass directive is specified with a URI,\nthen when a request is passed to the server, the part of a\nnormalized\nrequest URI matching the location is replaced by a URI\nspecified in the directive:\nlocation /name/ {\n    proxy_pass http://127.0.0.1/remote/;\n}\n\n\n\n\nIf proxy_pass is specified without a URI,\nthe request URI is passed to the server in the same form\nas sent by a client when the original request is processed,\nor the full normalized request URI is passed\nwhen processing the changed URI:\nlocation /some/path/ {\n    proxy_pass http://127.0.0.1;\n}\n\n\nBefore version 1.1.12,\nif proxy_pass is specified without a URI,\nthe original request URI might be passed\ninstead of the changed URI in some cases.\n\n\n\n \n\n\nIn some cases, the part of a request URI to be replaced cannot be determined:\n\n\n\n\nWhen location is specified using a regular expression,\nand also inside named locations.\n\nIn these cases,\nproxy_pass should be specified without a URI.\n\n\n\n\nWhen the URI is changed inside a proxied location using the\nrewrite directive,\nand this same configuration will be used to process a request\n(break):\nlocation /name/ {\n    rewrite    /name/([^/]+) /users?name=$1 break;\n    proxy_pass http://127.0.0.1;\n}\n\n\nIn this case, the URI specified in the directive is ignored and\nthe full changed request URI is passed to the server.\n\n\n\n\nWhen variables are used in proxy_pass:\nlocation /name/ {\n    proxy_pass http://127.0.0.1$request_uri;\n}\n\nIn this case, if URI is specified in the directive,\nit is passed to the server as is,\nreplacing the original request URI.\n\n\n \n\n\nWebSocket proxying requires special\nconfiguration and is supported since version 1.3.13.\n"
         },
         {
           "name": "proxy_pass_header",
+          "fieldName": "ProxyPassHeader",
           "syntax": "proxy_pass_header field;",
           "context": "http, server, location",
           "description": "\nPermits passing otherwise disabled header\nfields from a proxied server to a client.\n"
         },
         {
           "name": "proxy_pass_request_body",
+          "fieldName": "ProxyPassRequestBody",
           "syntax": "proxy_pass_request_body on | off;",
           "default": "proxy_pass_request_body on;",
           "context": "http, server, location",
@@ -1899,6 +2130,7 @@
         },
         {
           "name": "proxy_pass_request_headers",
+          "fieldName": "ProxyPassRequestHeaders",
           "syntax": "proxy_pass_request_headers on | off;",
           "default": "proxy_pass_request_headers on;",
           "context": "http, server, location",
@@ -1906,6 +2138,7 @@
         },
         {
           "name": "proxy_read_timeout",
+          "fieldName": "ProxyReadTimeout",
           "syntax": "proxy_read_timeout time;",
           "default": "proxy_read_timeout 60s;",
           "context": "http, server, location",
@@ -1913,6 +2146,7 @@
         },
         {
           "name": "proxy_redirect",
+          "fieldName": "ProxyRedirect",
           "syntax": "proxy_redirect default;proxy_redirect off;proxy_redirect redirect replacement;",
           "default": "proxy_redirect default;",
           "context": "http, server, location",
@@ -1920,6 +2154,7 @@
         },
         {
           "name": "proxy_request_buffering",
+          "fieldName": "ProxyRequestBuffering",
           "syntax": "proxy_request_buffering on | off;",
           "default": "proxy_request_buffering on;",
           "context": "http, server, location",
@@ -1927,6 +2162,7 @@
         },
         {
           "name": "proxy_send_lowat",
+          "fieldName": "ProxySendLowat",
           "syntax": "proxy_send_lowat size;",
           "default": "proxy_send_lowat 0;",
           "context": "http, server, location",
@@ -1934,6 +2170,7 @@
         },
         {
           "name": "proxy_send_timeout",
+          "fieldName": "ProxySendTimeout",
           "syntax": "proxy_send_timeout time;",
           "default": "proxy_send_timeout 60s;",
           "context": "http, server, location",
@@ -1941,12 +2178,14 @@
         },
         {
           "name": "proxy_set_body",
+          "fieldName": "ProxySetBody",
           "syntax": "proxy_set_body value;",
           "context": "http, server, location",
           "description": "\nAllows redefining the request body passed to the proxied server.\nThe value can contain text, variables, and their combination.\n"
         },
         {
           "name": "proxy_set_header",
+          "fieldName": "ProxySetHeader",
           "syntax": "proxy_set_header field value;",
           "default": "proxy_set_header Host $proxy_host;proxy_set_header Connection close;",
           "context": "http, server, location",
@@ -1954,6 +2193,7 @@
         },
         {
           "name": "proxy_socket_keepalive",
+          "fieldName": "ProxySocketKeepalive",
           "syntax": "proxy_socket_keepalive on | off;",
           "default": "proxy_socket_keepalive off;",
           "context": "http, server, location",
@@ -1961,18 +2201,21 @@
         },
         {
           "name": "proxy_ssl_certificate",
+          "fieldName": "ProxySslCertificate",
           "syntax": "proxy_ssl_certificate file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with the certificate in the PEM format\nused for authentication to a proxied HTTPS server.\n"
         },
         {
           "name": "proxy_ssl_certificate_key",
+          "fieldName": "ProxySslCertificateKey",
           "syntax": "proxy_ssl_certificate_key file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with the secret key in the PEM format\nused for authentication to a proxied HTTPS server.\n\n\nThe value\nengine:name:id\ncan be specified instead of the file (1.7.9),\nwhich loads a secret key with a specified id\nfrom the OpenSSL engine name.\n"
         },
         {
           "name": "proxy_ssl_ciphers",
+          "fieldName": "ProxySslCiphers",
           "syntax": "proxy_ssl_ciphers ciphers;",
           "default": "proxy_ssl_ciphers DEFAULT;",
           "context": "http, server, location",
@@ -1980,12 +2223,14 @@
         },
         {
           "name": "proxy_ssl_crl",
+          "fieldName": "ProxySslCrl",
           "syntax": "proxy_ssl_crl file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with revoked certificates (CRL)\nin the PEM format used to verify\nthe certificate of the proxied HTTPS server.\n"
         },
         {
           "name": "proxy_ssl_name",
+          "fieldName": "ProxySslName",
           "syntax": "proxy_ssl_name name;",
           "default": "proxy_ssl_name $proxy_host;",
           "context": "http, server, location",
@@ -1993,12 +2238,14 @@
         },
         {
           "name": "proxy_ssl_password_file",
+          "fieldName": "ProxySslPasswordFile",
           "syntax": "proxy_ssl_password_file file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with passphrases for\nsecret keys\nwhere each passphrase is specified on a separate line.\nPassphrases are tried in turn when loading the key.\n"
         },
         {
           "name": "proxy_ssl_protocols",
+          "fieldName": "ProxySslProtocols",
           "syntax": "proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];",
           "default": "proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;",
           "context": "http, server, location",
@@ -2006,6 +2253,7 @@
         },
         {
           "name": "proxy_ssl_server_name",
+          "fieldName": "ProxySslServerName",
           "syntax": "proxy_ssl_server_name on | off;",
           "default": "proxy_ssl_server_name off;",
           "context": "http, server, location",
@@ -2013,6 +2261,7 @@
         },
         {
           "name": "proxy_ssl_session_reuse",
+          "fieldName": "ProxySslSessionReuse",
           "syntax": "proxy_ssl_session_reuse on | off;",
           "default": "proxy_ssl_session_reuse on;",
           "context": "http, server, location",
@@ -2020,12 +2269,14 @@
         },
         {
           "name": "proxy_ssl_trusted_certificate",
+          "fieldName": "ProxySslTrustedCertificate",
           "syntax": "proxy_ssl_trusted_certificate file;",
           "context": "http, server, location",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify\nthe certificate of the proxied HTTPS server.\n"
         },
         {
           "name": "proxy_ssl_verify",
+          "fieldName": "ProxySslVerify",
           "syntax": "proxy_ssl_verify on | off;",
           "default": "proxy_ssl_verify off;",
           "context": "http, server, location",
@@ -2033,6 +2284,7 @@
         },
         {
           "name": "proxy_ssl_verify_depth",
+          "fieldName": "ProxySslVerifyDepth",
           "syntax": "proxy_ssl_verify_depth number;",
           "default": "proxy_ssl_verify_depth 1;",
           "context": "http, server, location",
@@ -2040,6 +2292,7 @@
         },
         {
           "name": "proxy_store",
+          "fieldName": "ProxyStore",
           "syntax": "proxy_store on | off | string;",
           "default": "proxy_store off;",
           "context": "http, server, location",
@@ -2047,6 +2300,7 @@
         },
         {
           "name": "proxy_store_access",
+          "fieldName": "ProxyStoreAccess",
           "syntax": "proxy_store_access users:permissions ...;",
           "default": "proxy_store_access user:rw;",
           "context": "http, server, location",
@@ -2054,6 +2308,7 @@
         },
         {
           "name": "proxy_temp_file_write_size",
+          "fieldName": "ProxyTempFileWriteSize",
           "syntax": "proxy_temp_file_write_size size;",
           "default": "proxy_temp_file_write_size 8k|16k;",
           "context": "http, server, location",
@@ -2061,6 +2316,7 @@
         },
         {
           "name": "proxy_temp_path",
+          "fieldName": "ProxyTempPath",
           "syntax": "proxy_temp_path path [level1 [level2 [level3]]];",
           "default": "proxy_temp_path proxy_temp;",
           "context": "http, server, location",
@@ -2074,12 +2330,14 @@
       "directives": [
         {
           "name": "set_real_ip_from",
+          "fieldName": "SetRealIpFrom",
           "syntax": "set_real_ip_from address | CIDR | unix:;",
           "context": "http, server, location",
           "description": "\nDefines trusted addresses that are known to send correct\nreplacement addresses.\nIf the special value unix: is specified,\nall UNIX-domain sockets will be trusted.\nTrusted addresses may also be specified using a hostname (1.13.1).\n\n\nIPv6 addresses are supported starting from versions 1.3.0 and 1.2.1.\n\n \n"
         },
         {
           "name": "real_ip_header",
+          "fieldName": "RealIpHeader",
           "syntax": "real_ip_header field | X-Real-IP | X-Forwarded-For | proxy_protocol;",
           "default": "real_ip_header X-Real-IP;",
           "context": "http, server, location",
@@ -2087,6 +2345,7 @@
         },
         {
           "name": "real_ip_recursive",
+          "fieldName": "RealIpRecursive",
           "syntax": "real_ip_recursive on | off;",
           "default": "real_ip_recursive off;",
           "context": "http, server, location",
@@ -2100,6 +2359,7 @@
       "directives": [
         {
           "name": "referer_hash_bucket_size",
+          "fieldName": "RefererHashBucketSize",
           "syntax": "referer_hash_bucket_size size;",
           "default": "referer_hash_bucket_size 64;",
           "context": "server, location",
@@ -2107,6 +2367,7 @@
         },
         {
           "name": "referer_hash_max_size",
+          "fieldName": "RefererHashMaxSize",
           "syntax": "referer_hash_max_size size;",
           "default": "referer_hash_max_size 2048;",
           "context": "server, location",
@@ -2114,6 +2375,7 @@
         },
         {
           "name": "valid_referers",
+          "fieldName": "ValidReferers",
           "syntax": "valid_referers none | blocked | server_names | string ...;",
           "context": "server, location",
           "description": "\nSpecifies the “Referer” request header field values\nthat will cause the embedded $invalid_referer variable to\nbe set to an empty string.\nOtherwise, the variable will be set to “1”.\nSearch for a match is case-insensitive.\n\n\nParameters can be as follows:\n\n\n\nnone\n\nthe “Referer” field is missing in the request header;\n\n\nblocked\n\nthe “Referer” field is present in the request header,\nbut its value has been deleted by a firewall or proxy server;\nsuch values are strings that do not start with\n“http://” or “https://”;\n\n\nserver_names\n\nthe “Referer” request header field contains\none of the server names;\n\n\narbitrary string\n\ndefines a server name and an optional URI prefix.\nA server name can have an “*” at the beginning or end.\nDuring the checking, the server’s port in the “Referer” field\nis ignored;\n\n\nregular expression\n\nthe first symbol should be a “~”.\nIt should be noted that an expression will be matched against\nthe text starting after the “http://”\nor “https://”.\n\n\n\n \n\n\nExample:\n\nvalid_referers none blocked server_names\n               *.example.com example.* www.example.org/galleries/\n               ~\\.google\\.;\n\n \n"
@@ -2126,30 +2388,35 @@
       "directives": [
         {
           "name": "break;",
+          "fieldName": "Break;",
           "syntax": "break;",
           "context": "server, location, if",
           "description": "\nStops processing the current set of\nngx_http_rewrite_module directives.\n\n\nIf a directive is specified inside the\nlocation,\nfurther processing of the request continues in this location.\n\n\nExample:\n\nif ($slow) {\n    limit_rate 10k;\n    break;\n}\n\n \n"
         },
         {
           "name": "if",
+          "fieldName": "If",
           "syntax": "if (condition) { ... }",
           "context": "server, location",
           "description": "\nThe specified condition is evaluated.\nIf true, this module directives specified inside the braces are\nexecuted, and the request is assigned the configuration inside the\nif directive.\nConfigurations inside the if directives are\ninherited from the previous configuration level.\n\n\nA condition may be any of the following:\n\n\n\n\na variable name; false if the value of a variable is an empty string\nor “0”;\n\nBefore version 1.0.1, any string starting with “0”\nwas considered a false value.\n\n\n\n\ncomparison of a variable with a string using the\n“=” and “!=” operators;\n\n\n\nmatching of a variable against a regular expression using the\n“~” (for case-sensitive matching) and\n“~*” (for case-insensitive matching) operators.\nRegular expressions can contain captures that are made available for\nlater reuse in the $1..$9 variables.\nNegative operators “!~” and “!~*”\nare also available.\nIf a regular expression includes the “}”\nor “;” characters, the whole expressions should be enclosed\nin single or double quotes.\n\n\n\nchecking of a file existence with the “-f” and\n“!-f” operators;\n\n\n\nchecking of a directory existence with the “-d” and\n“!-d” operators;\n\n\n\nchecking of a file, directory, or symbolic link existence with the\n“-e” and “!-e” operators;\n\n\n\nchecking for an executable file with the “-x”\nand “!-x” operators.\n\n\n\n \n\n\nExamples:\n\nif ($http_user_agent ~ MSIE) {\n    rewrite ^(.*)$ /msie/$1 break;\n}\n\nif ($http_cookie ~* \"id=([^;]+)(?:;|$)\") {\n    set $id $1;\n}\n\nif ($request_method = POST) {\n    return 405;\n}\n\nif ($slow) {\n    limit_rate 10k;\n}\n\nif ($invalid_referer) {\n    return 403;\n}\n\n \n\n\nA value of the $invalid_referer embedded variable is set by the\nvalid_referers directive.\n\n \n"
         },
         {
           "name": "return",
+          "fieldName": "Return",
           "syntax": "return code [text];return code URL;return URL;",
           "context": "server, location, if",
           "description": "\nStops processing and returns the specified code to a client.\nThe non-standard code 444 closes a connection without sending\na response header.\n\n\nStarting from version 0.8.42, it is possible to specify\neither a redirect URL (for codes 301, 302, 303, 307, and 308)\nor the response body text (for other codes).\nA response body text and redirect URL can contain variables.\nAs a special case, a redirect URL can be specified as a URI\nlocal to this server, in which case the full redirect URL\nis formed according to the request scheme ($scheme) and the\nserver_name_in_redirect and\nport_in_redirect directives.\n\n\nIn addition, a URL for temporary redirect with the code 302\ncan be specified as the sole parameter.\nSuch a parameter should start with the “http://”,\n“https://”, or “$scheme” string.\nA URL can contain variables.\n\n\n\n\nOnly the following codes could be returned before version 0.7.51:\n204, 400, 402 — 406, 408, 410, 411, 413, 416, and 500 — 504.\n\n \n\n\n\nThe code 307 was not treated as a redirect until versions 1.1.16 and 1.0.13.\n\n \n\n\n\nThe code 308 was not treated as a redirect until version 1.13.0.\n\n \n\n\nSee also the error_page directive.\n"
         },
         {
           "name": "rewrite",
+          "fieldName": "Rewrite",
           "syntax": "rewrite regex replacement [flag];",
           "context": "server, location, if",
           "description": "\nIf the specified regular expression matches a request URI, URI is changed\nas specified in the replacement string.\nThe rewrite directives are executed sequentially\nin order of their appearance in the configuration file.\nIt is possible to terminate further processing of the directives using flags.\nIf a replacement string starts with “http://”,\n“https://”, or “$scheme”,\nthe processing stops and the redirect is returned to a client.\n\n\nAn optional flag parameter can be one of:\n\n\n\nlast\n\nstops processing the current set of\nngx_http_rewrite_module directives and starts\na search for a new location matching the changed URI;\n\n\nbreak\n\nstops processing the current set of\nngx_http_rewrite_module directives\nas with the break directive;\n\n\nredirect\n\nreturns a temporary redirect with the 302 code;\nused if a replacement string does not start with\n“http://”, “https://”,\nor “$scheme”;\n\n\npermanent\n\nreturns a permanent redirect with the 301 code.\n\n\n\n \nThe full redirect URL is formed according to the\nrequest scheme ($scheme) and the\nserver_name_in_redirect and\nport_in_redirect directives.\n\n\nExample:\n\nserver {\n    ...\n    rewrite ^(/download/.*)/media/(.*)\\..*$ $1/mp3/$2.mp3 last;\n    rewrite ^(/download/.*)/audio/(.*)\\..*$ $1/mp3/$2.ra  last;\n    return  403;\n    ...\n}\n\n \n\n\nBut if these directives are put inside the “/download/”\nlocation, the last flag should be replaced by\nbreak, or otherwise nginx will make 10 cycles and\nreturn the 500 error:\n\nlocation /download/ {\n    rewrite ^(/download/.*)/media/(.*)\\..*$ $1/mp3/$2.mp3 break;\n    rewrite ^(/download/.*)/audio/(.*)\\..*$ $1/mp3/$2.ra  break;\n    return  403;\n}\n\n \n\n\nIf a replacement string includes the new request arguments,\nthe previous request arguments are appended after them.\nIf this is undesired, putting a question mark at the end of a replacement\nstring avoids having them appended, for example:\n\nrewrite ^/users/(.*)$ /show?user=$1? last;\n\n \n\n\nIf a regular expression includes the “}”\nor “;” characters, the whole expressions should be enclosed\nin single or double quotes.\n"
         },
         {
           "name": "rewrite_log",
+          "fieldName": "RewriteLog",
           "syntax": "rewrite_log on | off;",
           "default": "rewrite_log off;",
           "context": "http, server, location, if",
@@ -2157,12 +2424,14 @@
         },
         {
           "name": "set",
+          "fieldName": "Set",
           "syntax": "set $variable value;",
           "context": "server, location, if",
           "description": "\nSets a value for the specified variable.\nThe value can contain text, variables, and their combination.\n"
         },
         {
           "name": "uninitialized_variable_warn",
+          "fieldName": "UninitializedVariableWarn",
           "syntax": "uninitialized_variable_warn on | off;",
           "default": "uninitialized_variable_warn on;",
           "context": "http, server, location, if",
@@ -2176,6 +2445,7 @@
       "directives": [
         {
           "name": "split_clients",
+          "fieldName": "SplitClients",
           "syntax": "split_clients string $variable { ... }",
           "context": "http",
           "description": "\nCreates a variable for A/B testing, for example:\n\nsplit_clients \"${remote_addr}AAA\" $variant {\n               0.5%               .one;\n               2.0%               .two;\n               *                  \"\";\n}\n\n \nThe value of the original string is hashed using MurmurHash2.\nIn the example given, hash values from 0 to 21474835 (0.5%)\ncorrespond to the\nvalue \".one\" of the $variant variable,\nhash values from 21474836 to 107374180 (2%) correspond to\nthe value \".two\",\nand hash values from 107374181 to 4294967295 correspond to\nthe value \"\" (an empty string).\n"
@@ -2188,6 +2458,7 @@
       "directives": [
         {
           "name": "ssl",
+          "fieldName": "Ssl",
           "syntax": "ssl on | off;",
           "default": "ssl off;",
           "context": "http, server",
@@ -2195,6 +2466,7 @@
         },
         {
           "name": "ssl_buffer_size",
+          "fieldName": "SslBufferSize",
           "syntax": "ssl_buffer_size size;",
           "default": "ssl_buffer_size 16k;",
           "context": "http, server",
@@ -2202,18 +2474,21 @@
         },
         {
           "name": "ssl_certificate",
+          "fieldName": "SslCertificate",
           "syntax": "ssl_certificate file;",
           "context": "http, server",
           "description": "\nSpecifies a file with the certificate in the PEM format\nfor the given virtual server.\nIf intermediate certificates should be specified in addition to a primary\ncertificate, they should be specified in the same file in the following\norder: the primary certificate comes first, then the intermediate certificates.\nA secret key in the PEM format may be placed in the same file.\n\n\nSince version 1.11.0,\nthis directive can be specified multiple times\nto load certificates of different types, for example, RSA and ECDSA:\n\nserver {\n    listen              443 ssl;\n    server_name         example.com;\n\n    ssl_certificate     example.com.rsa.crt;\n    ssl_certificate_key example.com.rsa.key;\n\n    ssl_certificate     example.com.ecdsa.crt;\n    ssl_certificate_key example.com.ecdsa.key;\n\n    ...\n}\n\n \n\n\nOnly OpenSSL 1.0.2 or higher supports separate\ncertificate chains\nfor different certificates.\nWith older versions, only one certificate chain can be used.\n\n \n\n\nSince version 1.15.9, variables can be used in the file name\nwhen using OpenSSL 1.0.2 or higher:\n\nssl_certificate     $ssl_server_name.crt;\nssl_certificate_key $ssl_server_name.key;\n\n \nNote that using variables implies that\na certificate will be loaded for each SSL handshake,\nand this may have a negative impact on performance.\n"
         },
         {
           "name": "ssl_certificate_key",
+          "fieldName": "SslCertificateKey",
           "syntax": "ssl_certificate_key file;",
           "context": "http, server",
           "description": "\nSpecifies a file with the secret key in the PEM format\nfor the given virtual server.\n\n\nThe value\nengine:name:id\ncan be specified instead of the file (1.7.9),\nwhich loads a secret key with a specified id\nfrom the OpenSSL engine name.\n"
         },
         {
           "name": "ssl_ciphers",
+          "fieldName": "SslCiphers",
           "syntax": "ssl_ciphers ciphers;",
           "default": "ssl_ciphers HIGH:!aNULL:!MD5;",
           "context": "http, server",
@@ -2221,24 +2496,28 @@
         },
         {
           "name": "ssl_client_certificate",
+          "fieldName": "SslClientCertificate",
           "syntax": "ssl_client_certificate file;",
           "context": "http, server",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify client certificates and\nOCSP responses if ssl_stapling is enabled.\n\n\nThe list of certificates will be sent to clients.\nIf this is not desired, the ssl_trusted_certificate\ndirective can be used.\n"
         },
         {
           "name": "ssl_crl",
+          "fieldName": "SslCrl",
           "syntax": "ssl_crl file;",
           "context": "http, server",
           "description": "\nSpecifies a file with revoked certificates (CRL)\nin the PEM format used to verify\nclient certificates.\n"
         },
         {
           "name": "ssl_dhparam",
+          "fieldName": "SslDhparam",
           "syntax": "ssl_dhparam file;",
           "context": "http, server",
           "description": "\nSpecifies a file with DH parameters for DHE ciphers.\n\n\nBy default no parameters are set,\nand therefore DHE ciphers will not be used.\n\n\nPrior to version 1.11.0, builtin parameters were used by default.\n\n \n"
         },
         {
           "name": "ssl_early_data",
+          "fieldName": "SslEarlyData",
           "syntax": "ssl_early_data on | off;",
           "default": "ssl_early_data off;",
           "context": "http, server",
@@ -2246,6 +2525,7 @@
         },
         {
           "name": "ssl_ecdh_curve",
+          "fieldName": "SslEcdhCurve",
           "syntax": "ssl_ecdh_curve curve;",
           "default": "ssl_ecdh_curve auto;",
           "context": "http, server",
@@ -2253,12 +2533,14 @@
         },
         {
           "name": "ssl_password_file",
+          "fieldName": "SslPasswordFile",
           "syntax": "ssl_password_file file;",
           "context": "http, server",
           "description": "\nSpecifies a file with passphrases for\nsecret keys\nwhere each passphrase is specified on a separate line.\nPassphrases are tried in turn when loading the key.\n\n\nExample:\n\nhttp {\n    ssl_password_file /etc/keys/global.pass;\n    ...\n\n    server {\n        server_name www1.example.com;\n        ssl_certificate_key /etc/keys/first.key;\n    }\n\n    server {\n        server_name www2.example.com;\n\n        # named pipe can also be used instead of a file\n        ssl_password_file /etc/keys/fifo;\n        ssl_certificate_key /etc/keys/second.key;\n    }\n}\n\n \n"
         },
         {
           "name": "ssl_prefer_server_ciphers",
+          "fieldName": "SslPreferServerCiphers",
           "syntax": "ssl_prefer_server_ciphers on | off;",
           "default": "ssl_prefer_server_ciphers off;",
           "context": "http, server",
@@ -2266,6 +2548,7 @@
         },
         {
           "name": "ssl_protocols",
+          "fieldName": "SslProtocols",
           "syntax": "ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];",
           "default": "ssl_protocols TLSv1 TLSv1.1 TLSv1.2;",
           "context": "http, server",
@@ -2273,6 +2556,7 @@
         },
         {
           "name": "ssl_session_cache",
+          "fieldName": "SslSessionCache",
           "syntax": "ssl_session_cache off | none | [builtin[:size]] [shared:name:size];",
           "default": "ssl_session_cache none;",
           "context": "http, server",
@@ -2280,12 +2564,14 @@
         },
         {
           "name": "ssl_session_ticket_key",
+          "fieldName": "SslSessionTicketKey",
           "syntax": "ssl_session_ticket_key file;",
           "context": "http, server",
           "description": "\nSets a file with the secret key used to encrypt\nand decrypt TLS session tickets.\nThe directive is necessary if the same key has to be shared between\nmultiple servers.\nBy default, a randomly generated key is used.\n\n\nIf several keys are specified, only the first key is\nused to encrypt TLS session tickets.\nThis allows configuring key rotation, for example:\n\nssl_session_ticket_key current.key;\nssl_session_ticket_key previous.key;\n\n \n\n\nThe file must contain 80 or 48 bytes\nof random data and can be created using the following command:\n\nopenssl rand 80 > ticket.key\n\n \nDepending on the file size either AES256 (for 80-byte keys, 1.11.8)\nor AES128 (for 48-byte keys) is used for encryption.\n"
         },
         {
           "name": "ssl_session_tickets",
+          "fieldName": "SslSessionTickets",
           "syntax": "ssl_session_tickets on | off;",
           "default": "ssl_session_tickets on;",
           "context": "http, server",
@@ -2293,6 +2579,7 @@
         },
         {
           "name": "ssl_session_timeout",
+          "fieldName": "SslSessionTimeout",
           "syntax": "ssl_session_timeout time;",
           "default": "ssl_session_timeout 5m;",
           "context": "http, server",
@@ -2300,6 +2587,7 @@
         },
         {
           "name": "ssl_stapling",
+          "fieldName": "SslStapling",
           "syntax": "ssl_stapling on | off;",
           "default": "ssl_stapling off;",
           "context": "http, server",
@@ -2307,18 +2595,21 @@
         },
         {
           "name": "ssl_stapling_file",
+          "fieldName": "SslStaplingFile",
           "syntax": "ssl_stapling_file file;",
           "context": "http, server",
           "description": "\nWhen set, the stapled OCSP response will be taken from the\nspecified file instead of querying\nthe OCSP responder specified in the server certificate.\n\n\nThe file should be in the DER format as produced by the\n“openssl ocsp” command.\n"
         },
         {
           "name": "ssl_stapling_responder",
+          "fieldName": "SslStaplingResponder",
           "syntax": "ssl_stapling_responder url;",
           "context": "http, server",
           "description": "\nOverrides the URL of the OCSP responder specified in the\n“Authority\nInformation Access” certificate extension.\n\n\nOnly “http://” OCSP responders are supported:\n\nssl_stapling_responder http://ocsp.example.com/;\n\n \n"
         },
         {
           "name": "ssl_stapling_verify",
+          "fieldName": "SslStaplingVerify",
           "syntax": "ssl_stapling_verify on | off;",
           "default": "ssl_stapling_verify off;",
           "context": "http, server",
@@ -2326,12 +2617,14 @@
         },
         {
           "name": "ssl_trusted_certificate",
+          "fieldName": "SslTrustedCertificate",
           "syntax": "ssl_trusted_certificate file;",
           "context": "http, server",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify client certificates and\nOCSP responses if ssl_stapling is enabled.\n\n\nIn contrast to the certificate set by ssl_client_certificate,\nthe list of these certificates will not be sent to clients.\n"
         },
         {
           "name": "ssl_verify_client",
+          "fieldName": "SslVerifyClient",
           "syntax": "ssl_verify_client on | off | optional | optional_no_ca;",
           "default": "ssl_verify_client off;",
           "context": "http, server",
@@ -2339,6 +2632,7 @@
         },
         {
           "name": "ssl_verify_depth",
+          "fieldName": "SslVerifyDepth",
           "syntax": "ssl_verify_depth number;",
           "default": "ssl_verify_depth 1;",
           "context": "http, server",
@@ -2352,12 +2646,14 @@
       "directives": [
         {
           "name": "status;",
+          "fieldName": "Status;",
           "syntax": "status;",
           "context": "location",
           "description": "\nThe status information will be accessible from the surrounding location.\nAccess to this location should be\nlimited.\n"
         },
         {
           "name": "status_format",
+          "fieldName": "StatusFormat",
           "syntax": "status_format json;status_format jsonp [callback];",
           "default": "status_format json;",
           "context": "http, server, location",
@@ -2365,6 +2661,7 @@
         },
         {
           "name": "status_zone",
+          "fieldName": "StatusZone",
           "syntax": "status_zone zone;",
           "context": "server",
           "description": "\nEnables collection of virtual\nhttp\nor\nstream\n(1.7.11) server status information in the specified zone.\nSeveral servers may share the same zone.\n"
@@ -2377,6 +2674,7 @@
       "directives": [
         {
           "name": "stub_status;",
+          "fieldName": "StubStatus;",
           "syntax": "stub_status;",
           "context": "server, location",
           "description": "\nThe basic status information will be accessible from the surrounding location.\n\n\n\n\nIn versions prior to 1.7.5,\nthe directive syntax required an arbitrary argument, for example,\n“stub_status on”.\n\n \n"
@@ -2389,12 +2687,14 @@
       "directives": [
         {
           "name": "sub_filter",
+          "fieldName": "SubFilter",
           "syntax": "sub_filter string replacement;",
           "context": "http, server, location",
           "description": "\nSets a string to replace and a replacement string.\nThe string to replace is matched ignoring the case.\nThe string to replace (1.9.4) and replacement string can contain variables.\nSeveral sub_filter directives\ncan be specified on one configuration level (1.9.4).\nThese directives are inherited from the previous level if and only if there are\nno sub_filter directives defined on the current level.\n"
         },
         {
           "name": "sub_filter_last_modified",
+          "fieldName": "SubFilterLastModified",
           "syntax": "sub_filter_last_modified on | off;",
           "default": "sub_filter_last_modified off;",
           "context": "http, server, location",
@@ -2402,6 +2702,7 @@
         },
         {
           "name": "sub_filter_once",
+          "fieldName": "SubFilterOnce",
           "syntax": "sub_filter_once on | off;",
           "default": "sub_filter_once on;",
           "context": "http, server, location",
@@ -2409,6 +2710,7 @@
         },
         {
           "name": "sub_filter_types",
+          "fieldName": "SubFilterTypes",
           "syntax": "sub_filter_types mime-type ...;",
           "default": "sub_filter_types text/html;",
           "context": "http, server, location",
@@ -2422,6 +2724,7 @@
       "directives": [
         {
           "name": "userid",
+          "fieldName": "Userid",
           "syntax": "userid on | v1 | log | off;",
           "default": "userid off;",
           "context": "http, server, location",
@@ -2429,6 +2732,7 @@
         },
         {
           "name": "userid_domain",
+          "fieldName": "UseridDomain",
           "syntax": "userid_domain name | none;",
           "default": "userid_domain none;",
           "context": "http, server, location",
@@ -2436,6 +2740,7 @@
         },
         {
           "name": "userid_expires",
+          "fieldName": "UseridExpires",
           "syntax": "userid_expires time | max | off;",
           "default": "userid_expires off;",
           "context": "http, server, location",
@@ -2443,6 +2748,7 @@
         },
         {
           "name": "userid_mark",
+          "fieldName": "UseridMark",
           "syntax": "userid_mark letter | digit | = | off;",
           "default": "userid_mark off;",
           "context": "http, server, location",
@@ -2450,6 +2756,7 @@
         },
         {
           "name": "userid_name",
+          "fieldName": "UseridName",
           "syntax": "userid_name name;",
           "default": "userid_name uid;",
           "context": "http, server, location",
@@ -2457,6 +2764,7 @@
         },
         {
           "name": "userid_p3p",
+          "fieldName": "UseridP3p",
           "syntax": "userid_p3p string | none;",
           "default": "userid_p3p none;",
           "context": "http, server, location",
@@ -2464,6 +2772,7 @@
         },
         {
           "name": "userid_path",
+          "fieldName": "UseridPath",
           "syntax": "userid_path path;",
           "default": "userid_path /;",
           "context": "http, server, location",
@@ -2471,6 +2780,7 @@
         },
         {
           "name": "userid_service",
+          "fieldName": "UseridService",
           "syntax": "userid_service number;",
           "default": "userid_service IP address of the server;",
           "context": "http, server, location",
@@ -2484,6 +2794,7 @@
       "directives": [
         {
           "name": "http2_body_preread_size",
+          "fieldName": "Http2BodyPrereadSize",
           "syntax": "http2_body_preread_size size;",
           "default": "http2_body_preread_size 64k;",
           "context": "http, server",
@@ -2491,6 +2802,7 @@
         },
         {
           "name": "http2_chunk_size",
+          "fieldName": "Http2ChunkSize",
           "syntax": "http2_chunk_size size;",
           "default": "http2_chunk_size 8k;",
           "context": "http, server, location",
@@ -2498,6 +2810,7 @@
         },
         {
           "name": "http2_idle_timeout",
+          "fieldName": "Http2IdleTimeout",
           "syntax": "http2_idle_timeout time;",
           "default": "http2_idle_timeout 3m;",
           "context": "http, server",
@@ -2505,6 +2818,7 @@
         },
         {
           "name": "http2_max_concurrent_pushes",
+          "fieldName": "Http2MaxConcurrentPushes",
           "syntax": "http2_max_concurrent_pushes number;",
           "default": "http2_max_concurrent_pushes 10;",
           "context": "http, server",
@@ -2512,6 +2826,7 @@
         },
         {
           "name": "http2_max_concurrent_streams",
+          "fieldName": "Http2MaxConcurrentStreams",
           "syntax": "http2_max_concurrent_streams number;",
           "default": "http2_max_concurrent_streams 128;",
           "context": "http, server",
@@ -2519,6 +2834,7 @@
         },
         {
           "name": "http2_max_field_size",
+          "fieldName": "Http2MaxFieldSize",
           "syntax": "http2_max_field_size size;",
           "default": "http2_max_field_size 4k;",
           "context": "http, server",
@@ -2526,6 +2842,7 @@
         },
         {
           "name": "http2_max_header_size",
+          "fieldName": "Http2MaxHeaderSize",
           "syntax": "http2_max_header_size size;",
           "default": "http2_max_header_size 16k;",
           "context": "http, server",
@@ -2533,6 +2850,7 @@
         },
         {
           "name": "http2_max_requests",
+          "fieldName": "Http2MaxRequests",
           "syntax": "http2_max_requests number;",
           "default": "http2_max_requests 1000;",
           "context": "http, server",
@@ -2540,6 +2858,7 @@
         },
         {
           "name": "http2_push",
+          "fieldName": "Http2Push",
           "syntax": "http2_push uri | off;",
           "default": "http2_push off;",
           "context": "http, server, location",
@@ -2547,6 +2866,7 @@
         },
         {
           "name": "http2_push_preload",
+          "fieldName": "Http2PushPreload",
           "syntax": "http2_push_preload on | off;",
           "default": "http2_push_preload off;",
           "context": "http, server, location",
@@ -2554,6 +2874,7 @@
         },
         {
           "name": "http2_recv_buffer_size",
+          "fieldName": "Http2RecvBufferSize",
           "syntax": "http2_recv_buffer_size size;",
           "default": "http2_recv_buffer_size 256k;",
           "context": "http",
@@ -2561,6 +2882,7 @@
         },
         {
           "name": "http2_recv_timeout",
+          "fieldName": "Http2RecvTimeout",
           "syntax": "http2_recv_timeout time;",
           "default": "http2_recv_timeout 30s;",
           "context": "http, server",
@@ -2573,13 +2895,8 @@
       "link": "https://nginx.org/en/docs/stream/ngx_stream_core_module.html",
       "directives": [
         {
-          "name": "listen",
-          "syntax": "listen address:port [ssl] [udp] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];",
-          "context": "server",
-          "description": "\nSets the address and port for the socket\non which the server will accept connections.\nIt is possible to specify just the port.\nThe address can also be a hostname, for example:\n\nlisten 127.0.0.1:12345;\nlisten *:12345;\nlisten 12345;     # same as *:12345\nlisten localhost:12345;\n\n \nIPv6 addresses are specified in square brackets:\n\nlisten [::1]:12345;\nlisten [::]:12345;\n\n \nUNIX-domain sockets are specified with the “unix:”\nprefix:\n\nlisten unix:/var/run/nginx.sock;\n\n \n"
-        },
-        {
           "name": "preread_buffer_size",
+          "fieldName": "PrereadBufferSize",
           "syntax": "preread_buffer_size size;",
           "default": "preread_buffer_size 16k;",
           "context": "stream, server",
@@ -2587,6 +2904,7 @@
         },
         {
           "name": "preread_timeout",
+          "fieldName": "PrereadTimeout",
           "syntax": "preread_timeout timeout;",
           "default": "preread_timeout 30s;",
           "context": "stream, server",
@@ -2594,25 +2912,22 @@
         },
         {
           "name": "proxy_protocol_timeout",
+          "fieldName": "ProxyProtocolTimeout",
           "syntax": "proxy_protocol_timeout timeout;",
           "default": "proxy_protocol_timeout 30s;",
           "context": "stream, server",
           "description": "\nSpecifies a timeout for\nreading the PROXY protocol header to complete.\nIf no entire header is transmitted within this time,\nthe connection is closed.\n"
         },
         {
-          "name": "server",
-          "syntax": "server { ... }",
-          "context": "stream",
-          "description": "\nSets the configuration for a server.\n"
-        },
-        {
           "name": "stream",
+          "fieldName": "Stream",
           "syntax": "stream { ... }",
           "context": "main",
           "description": "\nProvides the configuration file context in which the stream server directives\nare specified.\n"
         },
         {
           "name": "tcp_nodelay",
+          "fieldName": "TcpNodelay",
           "syntax": "tcp_nodelay on | off;",
           "default": "tcp_nodelay on;",
           "context": "stream, server",
@@ -2620,6 +2935,7 @@
         },
         {
           "name": "variables_hash_bucket_size",
+          "fieldName": "VariablesHashBucketSize",
           "syntax": "variables_hash_bucket_size size;",
           "default": "variables_hash_bucket_size 64;",
           "context": "stream",
@@ -2627,6 +2943,7 @@
         },
         {
           "name": "variables_hash_max_size",
+          "fieldName": "VariablesHashMaxSize",
           "syntax": "variables_hash_max_size size;",
           "default": "variables_hash_max_size 1024;",
           "context": "stream",
@@ -2640,12 +2957,14 @@
       "directives": [
         {
           "name": "allow",
+          "fieldName": "Allow",
           "syntax": "allow address | CIDR | unix: | all;",
           "context": "stream, server",
           "description": "\nAllows access for the specified network or address.\nIf the special value unix: is specified,\nallows access for all UNIX-domain sockets.\n"
         },
         {
           "name": "deny",
+          "fieldName": "Deny",
           "syntax": "deny address | CIDR | unix: | all;",
           "context": "stream, server",
           "description": "\nDenies access for the specified network or address.\nIf the special value unix: is specified,\ndenies access for all UNIX-domain sockets.\n"
@@ -2658,6 +2977,7 @@
       "directives": [
         {
           "name": "geo",
+          "fieldName": "Geo",
           "syntax": "geo [$address] $variable { ... }",
           "context": "stream",
           "description": "\nDescribes the dependency of values of the specified variable\non the client IP address.\nBy default, the address is taken from the $remote_addr variable,\nbut it can also be taken from another variable, for example:\n\ngeo $arg_remote_addr $geo {\n    ...;\n}\n\n \n\n\n\n\nSince variables are evaluated only when used, the mere existence\nof even a large number of declared “geo” variables\ndoes not cause any extra costs for connection processing.\n\n \n\n\nIf the value of a variable does not represent a valid IP address\nthen the “255.255.255.255” address is used.\n\n\nAddresses are specified either as prefixes in CIDR notation\n(including individual addresses) or as ranges.\n\n\nThe following special parameters are also supported:\n\n\n\ndelete\n\ndeletes the specified network.\n\n\ndefault\n\na value set to the variable if the client address does not\nmatch any of the specified addresses.\nWhen addresses are specified in CIDR notation,\n“0.0.0.0/0” and “::/0”\ncan be used instead of default.\nWhen default is not specified, the default\nvalue will be an empty string.\n\n\ninclude\n\nincludes a file with addresses and values.\nThere can be several inclusions.\n\n\nranges\n\nindicates that addresses are specified as ranges.\nThis parameter should be the first.\nTo speed up loading of a geo base, addresses should be put in ascending order.\n\n\n\n \n\n\nExample:\n\ngeo $country {\n    default        ZZ;\n    include        conf/geo.conf;\n    delete         127.0.0.0/16;\n\n    127.0.0.0/24   US;\n    127.0.0.1/32   RU;\n    10.1.0.0/16    RU;\n    192.168.1.0/24 UK;\n}\n\n \n\n\nThe conf/geo.conf file could contain the following lines:\n\n10.2.0.0/16    RU;\n192.168.2.0/24 RU;\n\n \n\n\nA value of the most specific match is used.\nFor example, for the 127.0.0.1 address the value “RU”\nwill be chosen, not “US”.\n\n\nExample with ranges:\n\ngeo $country {\n    ranges;\n    default                   ZZ;\n    127.0.0.0-127.0.0.0       US;\n    127.0.0.1-127.0.0.1       RU;\n    127.0.0.1-127.0.0.255     US;\n    10.1.0.0-10.1.255.255     RU;\n    192.168.1.0-192.168.1.255 UK;\n}\n\n \n"
@@ -2670,18 +2990,21 @@
       "directives": [
         {
           "name": "geoip_country",
+          "fieldName": "GeoipCountry",
           "syntax": "geoip_country file;",
           "context": "stream",
           "description": "\nSpecifies a database used to determine the country\ndepending on the client IP address.\nThe following variables are available when using this database:\n\n\n\n$geoip_country_code\n\ntwo-letter country code, for example,\n“RU”, “US”.\n\n\n$geoip_country_code3\n\n\nthree-letter country code, for example,\n“RUS”, “USA”.\n\n\n$geoip_country_name\n\ncountry name, for example,\n“Russian Federation”, “United States”.\n\n\n\n \n"
         },
         {
           "name": "geoip_city",
+          "fieldName": "GeoipCity",
           "syntax": "geoip_city file;",
           "context": "stream",
           "description": "\nSpecifies a database used to determine the country, region, and city\ndepending on the client IP address.\nThe following variables are available when using this database:\n\n\n\n$geoip_area_code\ntelephone area code (US only).\n\nThis variable may contain outdated information since\nthe corresponding database field is deprecated.\n\n\n\n\n$geoip_city_continent_code\ntwo-letter continent code, for example,\n“EU”, “NA”.\n\n\n$geoip_city_country_code\n\n\ntwo-letter country code, for example,\n“RU”, “US”.\n\n\n$geoip_city_country_code3\n\n\nthree-letter country code, for example,\n“RUS”, “USA”.\n\n\n$geoip_city_country_name\n\n\ncountry name, for example,\n“Russian Federation”, “United States”.\n\n\n$geoip_dma_code\n\nDMA region code in US (also known as “metro code”), according to the\ngeotargeting\nin Google AdWords API.\n\n\n$geoip_latitude\nlatitude.\n\n$geoip_longitude\nlongitude.\n\n$geoip_region\n\ntwo-symbol country region code (region, territory, state, province, federal land\nand the like), for example,\n“48”, “DC”.\n\n\n$geoip_region_name\n\ncountry region name (region, territory, state, province, federal land\nand the like), for example,\n“Moscow City”, “District of Columbia”.\n\n\n$geoip_city\n\ncity name, for example,\n“Moscow”, “Washington”.\n\n\n$geoip_postal_code\n\npostal code.\n\n\n\n \n"
         },
         {
           "name": "geoip_org",
+          "fieldName": "GeoipOrg",
           "syntax": "geoip_org file;",
           "context": "stream",
           "description": "\nSpecifies a database used to determine the organization\ndepending on the client IP address.\nThe following variable is available when using this database:\n\n\n\n$geoip_org\n\norganization name, for example, “The University of Melbourne”.\n\n\n\n \n"
@@ -2694,12 +3017,14 @@
       "directives": [
         {
           "name": "keyval",
+          "fieldName": "Keyval",
           "syntax": "keyval key $variable zone=name;",
           "context": "stream",
           "description": "\nCreates a new $variable whose value\nis looked up by the key in the key-value database.\nStrings are matched ignoring the case.\nThe database is stored in a shared memory zone\nspecified by the zone parameter.\n"
         },
         {
           "name": "keyval_zone",
+          "fieldName": "KeyvalZone",
           "syntax": "keyval_zone zone=name:size [state=file] [timeout=time] [sync];",
           "context": "stream",
           "description": "\nSets the name and size of the shared memory zone\nthat keeps the key-value database.\nKey-value pairs are managed by the\nAPI.\n"
@@ -2712,12 +3037,14 @@
       "directives": [
         {
           "name": "limit_conn",
+          "fieldName": "LimitConn",
           "syntax": "limit_conn zone number;",
           "context": "stream, server",
           "description": "\nSets the shared memory zone\nand the maximum allowed number of connections for a given key value.\nWhen this limit is exceeded, the server will close the connection.\nFor example, the directives\n\nlimit_conn_zone $binary_remote_addr zone=addr:10m;\n\nserver {\n    ...\n    limit_conn addr 1;\n}\n\n \nallow only one connection per an IP address at a time.\n\n\nWhen several limit_conn directives are specified,\nany configured limit will apply.\n\n\nThe directives are inherited from the previous level if and\nonly if there are no\nlimit_conn\ndirectives on the current level.\n"
         },
         {
           "name": "limit_conn_log_level",
+          "fieldName": "LimitConnLogLevel",
           "syntax": "limit_conn_log_level info | notice | warn | error;",
           "default": "limit_conn_log_level error;",
           "context": "stream, server",
@@ -2725,6 +3052,7 @@
         },
         {
           "name": "limit_conn_zone",
+          "fieldName": "LimitConnZone",
           "syntax": "limit_conn_zone key zone=name:size;",
           "context": "stream",
           "description": "\nSets parameters for a shared memory zone\nthat will keep states for various keys.\nIn particular, the state includes the current number of connections.\nThe key can contain text, variables,\nand their combinations (1.11.2).\nConnections with an empty key value are not accounted.\nUsage example:\n\nlimit_conn_zone $binary_remote_addr zone=addr:10m;\n\n \nHere, the key is a client IP address set by the\n$binary_remote_addr variable.\nThe size of $binary_remote_addr\nis 4 bytes for IPv4 addresses or 16 bytes for IPv6 addresses.\nThe stored state always occupies 32 or 64 bytes\non 32-bit platforms and 64 bytes on 64-bit platforms.\nOne megabyte zone can keep about 32 thousand 32-byte states\nor about 16 thousand 64-byte states.\nIf the zone storage is exhausted, the server will close the connection.\n"
@@ -2737,6 +3065,7 @@
       "directives": [
         {
           "name": "access_log",
+          "fieldName": "AccessLog",
           "syntax": "access_log path format [buffer=size] [gzip[=level]] [flush=time] [if=condition];access_log off;",
           "default": "access_log off;",
           "context": "stream, server",
@@ -2744,12 +3073,14 @@
         },
         {
           "name": "log_format",
+          "fieldName": "LogFormat",
           "syntax": "log_format name [escape=default|json|none] string ...;",
           "context": "stream",
           "description": "\nSpecifies the log format, for example:\n\nlog_format proxy '$remote_addr [$time_local] '\n                 '$protocol $status $bytes_sent $bytes_received '\n                 '$session_time \"$upstream_addr\" '\n                 '\"$upstream_bytes_sent\" \"$upstream_bytes_received\" \"$upstream_connect_time\"';\n\n \n"
         },
         {
           "name": "open_log_file_cache",
+          "fieldName": "OpenLogFileCache",
           "syntax": "open_log_file_cache max=N [inactive=time] [min_uses=N] [valid=time];open_log_file_cache off;",
           "default": "open_log_file_cache off;",
           "context": "stream, server",
@@ -2763,12 +3094,14 @@
       "directives": [
         {
           "name": "map",
+          "fieldName": "Map",
           "syntax": "map string $variable { ... }",
           "context": "stream",
           "description": "\nCreates a new variable whose value\ndepends on values of one or more of the source variables\nspecified in the first parameter.\n\n\n\n\nSince variables are evaluated only when they are used, the mere declaration\neven of a large number of “map” variables\ndoes not add any extra costs to connection processing.\n\n \n\n\nParameters inside the map block specify a mapping\nbetween source and resulting values.\n\n\nSource values are specified as strings or regular expressions.\n\n\nStrings are matched ignoring the case.\n\n\nA regular expression should either start from the “~”\nsymbol for a case-sensitive matching, or from the “~*”\nsymbols for case-insensitive matching.\nA regular expression can contain named and positional captures\nthat can later be used in other directives along with the\nresulting variable.\n\n\nIf a source value matches one of the names of special parameters\ndescribed below, it should be prefixed with the “\\” symbol.\n\n\nThe resulting value can contain text,\nvariable, and their combination.\n\n\nThe following special parameters are also supported:\n\n\ndefault value\n\nsets the resulting value if the source value matches none\nof the specified variants.\nWhen default is not specified, the default\nresulting value will be an empty string.\n\n\nhostnames\n\nindicates that source values can be hostnames with a prefix or suffix mask:\n*.example.com 1;\nexample.*     1;\n\nThe following two records\nexample.com   1;\n*.example.com 1;\n\ncan be combined:\n.example.com  1;\n\nThis parameter should be specified before the list of values.\n\n\ninclude file\n\nincludes a file with values.\nThere can be several inclusions.\n\n\nvolatile\n\nindicates that the variable is not cacheable (1.11.7).\n\n\n\n \n\n\nIf the source value matches more than one of the specified variants,\ne.g. both a mask and a regular expression match, the first matching\nvariant will be chosen, in the following order of priority:\n\n\n\n\nstring value without a mask\n\n\n\nlongest string value with a prefix mask,\ne.g. “*.example.com”\n\n\n\nlongest string value with a suffix mask,\ne.g. “mail.*”\n\n\n\nfirst matching regular expression\n(in order of appearance in a configuration file)\n\n\n\ndefault value\n\n\n\n \n"
         },
         {
           "name": "map_hash_bucket_size",
+          "fieldName": "MapHashBucketSize",
           "syntax": "map_hash_bucket_size size;",
           "default": "map_hash_bucket_size 32|64|128;",
           "context": "stream",
@@ -2776,6 +3109,7 @@
         },
         {
           "name": "map_hash_max_size",
+          "fieldName": "MapHashMaxSize",
           "syntax": "map_hash_max_size size;",
           "default": "map_hash_max_size 2048;",
           "context": "stream",
@@ -2789,12 +3123,14 @@
       "directives": [
         {
           "name": "proxy_bind",
+          "fieldName": "ProxyBind",
           "syntax": "proxy_bind address [transparent] | off;",
           "context": "stream, server",
           "description": "\nMakes outgoing connections to a proxied server originate\nfrom the specified local IP address.\nParameter value can contain variables (1.11.2).\nThe special value off cancels the effect\nof the proxy_bind directive\ninherited from the previous configuration level, which allows the\nsystem to auto-assign the local IP address.\n"
         },
         {
           "name": "proxy_buffer_size",
+          "fieldName": "ProxyBufferSize",
           "syntax": "proxy_buffer_size size;",
           "default": "proxy_buffer_size 16k;",
           "context": "stream, server",
@@ -2802,6 +3138,7 @@
         },
         {
           "name": "proxy_connect_timeout",
+          "fieldName": "ProxyConnectTimeout",
           "syntax": "proxy_connect_timeout time;",
           "default": "proxy_connect_timeout 60s;",
           "context": "stream, server",
@@ -2809,6 +3146,7 @@
         },
         {
           "name": "proxy_download_rate",
+          "fieldName": "ProxyDownloadRate",
           "syntax": "proxy_download_rate rate;",
           "default": "proxy_download_rate 0;",
           "context": "stream, server",
@@ -2816,6 +3154,7 @@
         },
         {
           "name": "proxy_next_upstream",
+          "fieldName": "ProxyNextUpstream",
           "syntax": "proxy_next_upstream on | off;",
           "default": "proxy_next_upstream on;",
           "context": "stream, server",
@@ -2823,6 +3162,7 @@
         },
         {
           "name": "proxy_next_upstream_timeout",
+          "fieldName": "ProxyNextUpstreamTimeout",
           "syntax": "proxy_next_upstream_timeout time;",
           "default": "proxy_next_upstream_timeout 0;",
           "context": "stream, server",
@@ -2830,6 +3170,7 @@
         },
         {
           "name": "proxy_next_upstream_tries",
+          "fieldName": "ProxyNextUpstreamTries",
           "syntax": "proxy_next_upstream_tries number;",
           "default": "proxy_next_upstream_tries 0;",
           "context": "stream, server",
@@ -2837,12 +3178,14 @@
         },
         {
           "name": "proxy_pass",
+          "fieldName": "ProxyPass",
           "syntax": "proxy_pass address;",
           "context": "server",
           "description": "\nSets the address of a proxied server.\nThe address can be specified as a domain name or IP address,\nand a port:\n\nproxy_pass localhost:12345;\n\n \nor as a UNIX-domain socket path:\n\nproxy_pass unix:/tmp/stream.socket;\n\n \n\n\nIf a domain name resolves to several addresses, all of them will be\nused in a round-robin fashion.\nIn addition, an address can be specified as a\nserver group.\n\n\nThe address can also be specified using variables (1.11.3):\n\nproxy_pass $upstream;\n\n \nIn this case, the server name is searched among the described\nserver groups,\nand, if not found, is determined using a\nresolver.\n"
         },
         {
           "name": "proxy_protocol",
+          "fieldName": "ProxyProtocol",
           "syntax": "proxy_protocol on | off;",
           "default": "proxy_protocol off;",
           "context": "stream, server",
@@ -2850,6 +3193,7 @@
         },
         {
           "name": "proxy_requests",
+          "fieldName": "ProxyRequests",
           "syntax": "proxy_requests number;",
           "default": "proxy_requests 0;",
           "context": "stream, server",
@@ -2857,12 +3201,14 @@
         },
         {
           "name": "proxy_responses",
+          "fieldName": "ProxyResponses",
           "syntax": "proxy_responses number;",
           "context": "stream, server",
           "description": "\nSets the number of datagrams expected from the proxied server\nin response to a client datagram\nif the UDP\nprotocol is used.\nThe number serves as a hint for session termination.\nBy default, the number of datagrams is not limited.\n\n\nIf zero value is specified, no response is expected.\nHowever, if a response is received and the\nsession is still not finished, the response will be handled.\n"
         },
         {
           "name": "proxy_socket_keepalive",
+          "fieldName": "ProxySocketKeepalive",
           "syntax": "proxy_socket_keepalive on | off;",
           "default": "proxy_socket_keepalive off;",
           "context": "stream, server",
@@ -2870,6 +3216,7 @@
         },
         {
           "name": "proxy_ssl",
+          "fieldName": "ProxySsl",
           "syntax": "proxy_ssl on | off;",
           "default": "proxy_ssl off;",
           "context": "stream, server",
@@ -2877,18 +3224,21 @@
         },
         {
           "name": "proxy_ssl_certificate",
+          "fieldName": "ProxySslCertificate",
           "syntax": "proxy_ssl_certificate file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with the certificate in the PEM format\nused for authentication to a proxied server.\n"
         },
         {
           "name": "proxy_ssl_certificate_key",
+          "fieldName": "ProxySslCertificateKey",
           "syntax": "proxy_ssl_certificate_key file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with the secret key in the PEM format\nused for authentication to a proxied server.\n"
         },
         {
           "name": "proxy_ssl_ciphers",
+          "fieldName": "ProxySslCiphers",
           "syntax": "proxy_ssl_ciphers ciphers;",
           "default": "proxy_ssl_ciphers DEFAULT;",
           "context": "stream, server",
@@ -2896,12 +3246,14 @@
         },
         {
           "name": "proxy_ssl_crl",
+          "fieldName": "ProxySslCrl",
           "syntax": "proxy_ssl_crl file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with revoked certificates (CRL)\nin the PEM format used to verify\nthe certificate of the proxied server.\n"
         },
         {
           "name": "proxy_ssl_name",
+          "fieldName": "ProxySslName",
           "syntax": "proxy_ssl_name name;",
           "default": "proxy_ssl_name host from proxy_pass;",
           "context": "stream, server",
@@ -2909,12 +3261,14 @@
         },
         {
           "name": "proxy_ssl_password_file",
+          "fieldName": "ProxySslPasswordFile",
           "syntax": "proxy_ssl_password_file file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with passphrases for\nsecret keys\nwhere each passphrase is specified on a separate line.\nPassphrases are tried in turn when loading the key.\n"
         },
         {
           "name": "proxy_ssl_protocols",
+          "fieldName": "ProxySslProtocols",
           "syntax": "proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];",
           "default": "proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2;",
           "context": "stream, server",
@@ -2922,6 +3276,7 @@
         },
         {
           "name": "proxy_ssl_server_name",
+          "fieldName": "ProxySslServerName",
           "syntax": "proxy_ssl_server_name on | off;",
           "default": "proxy_ssl_server_name off;",
           "context": "stream, server",
@@ -2929,6 +3284,7 @@
         },
         {
           "name": "proxy_ssl_session_reuse",
+          "fieldName": "ProxySslSessionReuse",
           "syntax": "proxy_ssl_session_reuse on | off;",
           "default": "proxy_ssl_session_reuse on;",
           "context": "stream, server",
@@ -2936,12 +3292,14 @@
         },
         {
           "name": "proxy_ssl_trusted_certificate",
+          "fieldName": "ProxySslTrustedCertificate",
           "syntax": "proxy_ssl_trusted_certificate file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify\nthe certificate of the proxied server.\n"
         },
         {
           "name": "proxy_ssl_verify",
+          "fieldName": "ProxySslVerify",
           "syntax": "proxy_ssl_verify on | off;",
           "default": "proxy_ssl_verify off;",
           "context": "stream, server",
@@ -2949,6 +3307,7 @@
         },
         {
           "name": "proxy_ssl_verify_depth",
+          "fieldName": "ProxySslVerifyDepth",
           "syntax": "proxy_ssl_verify_depth number;",
           "default": "proxy_ssl_verify_depth 1;",
           "context": "stream, server",
@@ -2956,6 +3315,7 @@
         },
         {
           "name": "proxy_timeout",
+          "fieldName": "ProxyTimeout",
           "syntax": "proxy_timeout timeout;",
           "default": "proxy_timeout 10m;",
           "context": "stream, server",
@@ -2963,6 +3323,7 @@
         },
         {
           "name": "proxy_upload_rate",
+          "fieldName": "ProxyUploadRate",
           "syntax": "proxy_upload_rate rate;",
           "default": "proxy_upload_rate 0;",
           "context": "stream, server",
@@ -2976,6 +3337,7 @@
       "directives": [
         {
           "name": "set_real_ip_from",
+          "fieldName": "SetRealIpFrom",
           "syntax": "set_real_ip_from address | CIDR | unix:;",
           "context": "stream, server",
           "description": "\nDefines trusted addresses that are known to send correct\nreplacement addresses.\nIf the special value unix: is specified,\nall UNIX-domain sockets will be trusted.\n"
@@ -2988,6 +3350,7 @@
       "directives": [
         {
           "name": "return",
+          "fieldName": "Return",
           "syntax": "return value;",
           "context": "server",
           "description": "\nSpecifies a value to send to the client.\nThe value can contain text, variables, and their combination.\n"
@@ -3000,6 +3363,7 @@
       "directives": [
         {
           "name": "split_clients",
+          "fieldName": "SplitClients",
           "syntax": "split_clients string $variable { ... }",
           "context": "stream",
           "description": "\nCreates a variable for A/B testing, for example:\n\nsplit_clients \"${remote_addr}AAA\" $variant {\n               0.5%               .one;\n               2.0%               .two;\n               *                  \"\";\n}\n\n \nThe value of the original string is hashed using MurmurHash2.\nIn the example given, hash values from 0 to 21474835 (0.5%)\ncorrespond to the\nvalue \".one\" of the $variant variable,\nhash values from 21474836 to 107374180 (2%) correspond to\nthe value \".two\",\nand hash values from 107374181 to 4294967295 correspond to\nthe value \"\" (an empty string).\n"
@@ -3012,18 +3376,21 @@
       "directives": [
         {
           "name": "ssl_certificate",
+          "fieldName": "SslCertificate",
           "syntax": "ssl_certificate file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with the certificate in the PEM format\nfor the given server.\nIf intermediate certificates should be specified in addition to a primary\ncertificate, they should be specified in the same file in the following\norder: the primary certificate comes first, then the intermediate certificates.\nA secret key in the PEM format may be placed in the same file.\n\n\nSince version 1.11.0,\nthis directive can be specified multiple times\nto load certificates of different types, for example, RSA and ECDSA:\n\nserver {\n    listen              12345 ssl;\n\n    ssl_certificate     example.com.rsa.crt;\n    ssl_certificate_key example.com.rsa.key;\n\n    ssl_certificate     example.com.ecdsa.crt;\n    ssl_certificate_key example.com.ecdsa.key;\n\n    ...\n}\n\n \n\n\nOnly OpenSSL 1.0.2 or higher supports separate certificate chains\nfor different certificates.\nWith older versions, only one certificate chain can be used.\n\n \n\n\nSince version 1.15.9, variables can be used in the file name\nwhen using OpenSSL 1.0.2 or higher:\n\nssl_certificate     $ssl_server_name.crt;\nssl_certificate_key $ssl_server_name.key;\n\n \nNote that using variables implies that\na certificate will be loaded for each SSL handshake,\nand this may have a negative impact on performance.\n"
         },
         {
           "name": "ssl_certificate_key",
+          "fieldName": "SslCertificateKey",
           "syntax": "ssl_certificate_key file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with the secret key in the PEM format\nfor the given server.\n\n\nThe value\nengine:name:id\ncan be specified instead of the file,\nwhich loads a secret key with a specified id\nfrom the OpenSSL engine name.\n"
         },
         {
           "name": "ssl_ciphers",
+          "fieldName": "SslCiphers",
           "syntax": "ssl_ciphers ciphers;",
           "default": "ssl_ciphers HIGH:!aNULL:!MD5;",
           "context": "stream, server",
@@ -3031,24 +3398,28 @@
         },
         {
           "name": "ssl_client_certificate",
+          "fieldName": "SslClientCertificate",
           "syntax": "ssl_client_certificate file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify client certificates.\n\n\nThe list of certificates will be sent to clients.\nIf this is not desired, the ssl_trusted_certificate\ndirective can be used.\n"
         },
         {
           "name": "ssl_crl",
+          "fieldName": "SslCrl",
           "syntax": "ssl_crl file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with revoked certificates (CRL)\nin the PEM format used to verify\nclient certificates.\n"
         },
         {
           "name": "ssl_dhparam",
+          "fieldName": "SslDhparam",
           "syntax": "ssl_dhparam file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with DH parameters for DHE ciphers.\n\n\nBy default no parameters are set,\nand therefore DHE ciphers will not be used.\n\n\nPrior to version 1.11.0, builtin parameters were used by default.\n\n \n"
         },
         {
           "name": "ssl_ecdh_curve",
+          "fieldName": "SslEcdhCurve",
           "syntax": "ssl_ecdh_curve curve;",
           "default": "ssl_ecdh_curve auto;",
           "context": "stream, server",
@@ -3056,6 +3427,7 @@
         },
         {
           "name": "ssl_handshake_timeout",
+          "fieldName": "SslHandshakeTimeout",
           "syntax": "ssl_handshake_timeout time;",
           "default": "ssl_handshake_timeout 60s;",
           "context": "stream, server",
@@ -3063,12 +3435,14 @@
         },
         {
           "name": "ssl_password_file",
+          "fieldName": "SslPasswordFile",
           "syntax": "ssl_password_file file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with passphrases for\nsecret keys\nwhere each passphrase is specified on a separate line.\nPassphrases are tried in turn when loading the key.\n\n\nExample:\n\nstream {\n    ssl_password_file /etc/keys/global.pass;\n    ...\n\n    server {\n        listen 127.0.0.1:12345;\n        ssl_certificate_key /etc/keys/first.key;\n    }\n\n    server {\n        listen 127.0.0.1:12346;\n\n        # named pipe can also be used instead of a file\n        ssl_password_file /etc/keys/fifo;\n        ssl_certificate_key /etc/keys/second.key;\n    }\n}\n\n \n"
         },
         {
           "name": "ssl_prefer_server_ciphers",
+          "fieldName": "SslPreferServerCiphers",
           "syntax": "ssl_prefer_server_ciphers on | off;",
           "default": "ssl_prefer_server_ciphers off;",
           "context": "stream, server",
@@ -3076,6 +3450,7 @@
         },
         {
           "name": "ssl_protocols",
+          "fieldName": "SslProtocols",
           "syntax": "ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];",
           "default": "ssl_protocols TLSv1 TLSv1.1 TLSv1.2;",
           "context": "stream, server",
@@ -3083,6 +3458,7 @@
         },
         {
           "name": "ssl_session_cache",
+          "fieldName": "SslSessionCache",
           "syntax": "ssl_session_cache off | none | [builtin[:size]] [shared:name:size];",
           "default": "ssl_session_cache none;",
           "context": "stream, server",
@@ -3090,12 +3466,14 @@
         },
         {
           "name": "ssl_session_ticket_key",
+          "fieldName": "SslSessionTicketKey",
           "syntax": "ssl_session_ticket_key file;",
           "context": "stream, server",
           "description": "\nSets a file with the secret key used to encrypt\nand decrypt TLS session tickets.\nThe directive is necessary if the same key has to be shared between\nmultiple servers.\nBy default, a randomly generated key is used.\n\n\nIf several keys are specified, only the first key is\nused to encrypt TLS session tickets.\nThis allows configuring key rotation, for example:\n\nssl_session_ticket_key current.key;\nssl_session_ticket_key previous.key;\n\n \n\n\nThe file must contain 80 or 48 bytes\nof random data and can be created using the following command:\n\nopenssl rand 80 > ticket.key\n\n \nDepending on the file size either AES256 (for 80-byte keys, 1.11.8)\nor AES128 (for 48-byte keys) is used for encryption.\n"
         },
         {
           "name": "ssl_session_tickets",
+          "fieldName": "SslSessionTickets",
           "syntax": "ssl_session_tickets on | off;",
           "default": "ssl_session_tickets on;",
           "context": "stream, server",
@@ -3103,6 +3481,7 @@
         },
         {
           "name": "ssl_session_timeout",
+          "fieldName": "SslSessionTimeout",
           "syntax": "ssl_session_timeout time;",
           "default": "ssl_session_timeout 5m;",
           "context": "stream, server",
@@ -3110,12 +3489,14 @@
         },
         {
           "name": "ssl_trusted_certificate",
+          "fieldName": "SslTrustedCertificate",
           "syntax": "ssl_trusted_certificate file;",
           "context": "stream, server",
           "description": "\nSpecifies a file with trusted CA certificates in the PEM format\nused to verify client certificates.\n\n\nIn contrast to the certificate set by ssl_client_certificate,\nthe list of these certificates will not be sent to clients.\n"
         },
         {
           "name": "ssl_verify_client",
+          "fieldName": "SslVerifyClient",
           "syntax": "ssl_verify_client on | off | optional | optional_no_ca;",
           "default": "ssl_verify_client off;",
           "context": "stream, server",
@@ -3123,6 +3504,7 @@
         },
         {
           "name": "ssl_verify_depth",
+          "fieldName": "SslVerifyDepth",
           "syntax": "ssl_verify_depth number;",
           "default": "ssl_verify_depth 1;",
           "context": "stream, server",
@@ -3136,6 +3518,7 @@
       "directives": [
         {
           "name": "ssl_preread",
+          "fieldName": "SslPreread",
           "syntax": "ssl_preread on | off;",
           "default": "ssl_preread off;",
           "context": "stream, server",

@@ -159,7 +159,20 @@ const scrapeDirectives = async (ngxDirective, page) => {
       }
     };
 
+    const camelize = (text, separator='_')=> (
+      text.split(separator)
+          .map((w)=> w.replace(/./, (m)=> m.toUpperCase()))
+          .join('')
+    );
+
     const directiveList = Array.from(document.querySelectorAll(sel));
+
+    const directivesToSkip = [
+      'server',
+      'http',
+      'location',
+      'listen',
+    ];
 
     return directiveList.map((directive) => {
       const rows = Array.from(directive.querySelectorAll('table tbody tr'));
@@ -180,6 +193,11 @@ const scrapeDirectives = async (ngxDirective, page) => {
         // fix word is the name of the directive
         if (name === 'syntax') {
           result.name = value.split(' ')[0];
+          result.fieldName = camelize(result.name);
+
+          if (directivesToSkip.includes(result.name)) {
+            return null;
+          }
         }
 
         // don't configure default empty values
