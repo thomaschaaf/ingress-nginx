@@ -32,18 +32,19 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 /*
-  Step 2 reads the generated documentation, creates a list of the types,
-  generating a new field in each directive with the name of the type.
+  Step 3 reads the generated documentation and the mapping file,
+  updating the goType field in each directive if the mapping value
+  is not a number.
 */
 (async () => {
-  const file = await readFilePromisified('documentation.json', 'utf8');
-  const data = JSON.parse(file);
+  let file = await readFilePromisified('documentation.json', 'utf8');
+  const directives = JSON.parse(file);
 
-  const types = [];
-  const stats={};
+  file = await readFilePromisified('types-mapping.json', 'utf8');
+  const typesMapping = JSON.parse(file);
 
-  for (let index = 0; index < data.modules.length; index++) {
-    const module = data.modules[index];
+  for (let index = 0; index < directives.modules.length; index++) {
+    const module = directives.modules[index];
     for (let index = 0; index < module.directives.length; index++) {
       const directive = module.directives[index];
 
@@ -56,29 +57,17 @@ process.on('unhandledRejection', (reason, p) => {
         continue;
       }
 
-      if (!types.includes(rawType)) {
-        types.push(rawType);
-        stats[rawType]=1;
-        continue;
-      }
+      const t = typesMapping[rawType];
+      if (t) {
+        if (typeof t === 'number') {
+          continue;
+        }
 
-      stats[rawType] += 1;
+        directive.goType = t;
+      }
     };
   };
 
-  const validTypes = [];
-
-  for (const key in stats) {
-    if (stats[key] === 1) {
-      continue;
-    } else {
-      validTypes.push(key);
-    }
-  }
-
-  const t = JSON.stringify(validTypes, null, 2);
-  const s = JSON.stringify(stats, null, 2);
-
-  await writeFilePromisified('valid-types.json', t, 'utf8');
-  await writeFilePromisified('types-stat.json', s, 'utf8');
+  const d = JSON.stringify(directives, null, 2);
+  await writeFilePromisified('documentation.json', d, 'utf8');
 })();
