@@ -51,7 +51,7 @@ endif
 
 REGISTRY ?= gcr.io/k8s-staging-ingress-nginx
 
-BASE_IMAGE ?= k8s.gcr.io/ingress-nginx/nginx:v20201028-g2c1279cd8@sha256:bd22e4f9bbf88aee527a86692be4442d03fa1ef2df94356312c9db8bec1f7ea3
+BASE_IMAGE ?= docker.io/aledbf/nginx-fips:0.32
 
 GOARCH=$(ARCH)
 
@@ -68,7 +68,7 @@ image: clean-image ## Build image for a particular arch.
 		--build-arg TARGETARCH="$(ARCH)" \
 		--build-arg COMMIT_SHA="$(COMMIT_SHA)" \
 		--build-arg BUILD_ID="$(BUILD_ID)" \
-		-t $(REGISTRY)/controller:$(TAG) rootfs
+		-t $(REGISTRY)/controller:$(TAG) rootfs/ -f rootfs/Dockerfile.fips
 
 .PHONY: clean-image
 clean-image: ## Removes local image
